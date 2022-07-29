@@ -1,14 +1,19 @@
-import { Button, Stack, Text } from '@react-native-material/core';
+import { Box, Button, Flex, Text } from '@react-native-material/core';
 import React from 'react';
 
 export const Footer = () => {
   return (
-    <Stack m={20}>
+    <Box pb={100} m={10} h={200}>
       <Text>Skontaktuj się z nami</Text>
-      <Text>
-        Regulamin Polityka Prywatności Instrukcja jak spakować rzeczy do oddania
-      </Text>
+      <Flex items='start'>
+        <Button title='Regulamin' variant='text' />
+        <Button title='Polityka Prywatności' variant='text' />
+        <Button
+          title='Instrukcja jak spakować rzeczy do oddania'
+          variant='text'
+        />
+      </Flex>
       <Button title='Załóż konto' />
-    </Stack>
+    </Box>
   );
 };

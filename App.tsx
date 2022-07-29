@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { Footer } from './components/Footer';
 
 import { Header } from './components/Header';
 import { Instructions } from './components/Instruction';
@@ -14,6 +15,7 @@ export default function App() {
         <WelcomeBanner />
         <Instructions />
         <WhoWeHelp />
+        <Footer />
       </ScrollView>
       <StatusBar style='auto' />
     </View>

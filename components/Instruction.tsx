@@ -8,8 +8,8 @@ import { View } from 'react-native';
 export const Instructions = () => {
   return (
     <Wrap center>
-      <Text>Wystarczą 4 proste kroki</Text>
-      <Flex items={'start'} inline w={'100%'}>
+      <Text variant='h5'>Wystarczą 4 proste kroki</Text>
+      <Flex items={'baseline'} justify='around' inline w={'100%'}>
         <Flex center w={'25%'}>
           <IconButton
             icon={(props) => (

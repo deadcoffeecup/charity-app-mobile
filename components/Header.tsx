@@ -6,13 +6,7 @@ import { StyleSheet } from 'react-native';
 export const Header = () => (
   <AppBar
     style={styles.appBar}
-    // title='Title'
-    leading={(props) => (
-      <IconButton
-        icon={(props) => <Icon name='dots-vertical' {...props} size={50} />}
-        {...props}
-      />
-    )}
+    title='Logo'
     trailing={(props) => (
       <HStack>
         <IconButton
