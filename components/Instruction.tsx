@@ -3,7 +3,7 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 import { Wrap, Flex } from 'react-native-flex-layout';
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export const Instructions = () => {
   return (
@@ -16,7 +16,9 @@ export const Instructions = () => {
               <Icon fontSize={100} name='access-point' {...props} size={20} />
             )}
           />
-          <Text variant='caption'>Wybierz rzeczy do oddania</Text>
+          <Text style={styles.text} variant='caption'>
+            Wybierz rzeczy do oddania
+          </Text>
         </Flex>
         <Flex center w={'25%'}>
           <IconButton
@@ -24,7 +26,9 @@ export const Instructions = () => {
               <Icon fontSize={100} name='menu' {...props} size={20} />
             )}
           />
-          <Text variant='caption'>Spakuje je</Text>
+          <Text style={styles.text} variant='caption'>
+            Spakuje je
+          </Text>
         </Flex>
         <Flex center w={'25%'}>
           <IconButton
@@ -32,7 +36,9 @@ export const Instructions = () => {
               <Icon fontSize={100} name='menu' {...props} size={20} />
             )}
           />
-          <Text variant='caption'>Zdecyduj komu chcesz pomóc</Text>
+          <Text style={styles.text} variant='caption'>
+            Zdecyduj komu chcesz pomóc
+          </Text>
         </Flex>
 
         <Flex center w={'25%'}>
@@ -41,9 +47,19 @@ export const Instructions = () => {
               <Icon fontSize={100} name='menu' {...props} size={20} />
             )}
           />
-          <Text variant='caption'>Zamów kuriera w dogodnym terminie</Text>
+          <Text style={styles.text} variant='caption'>
+            Zamów kuriera w dogodnym terminie
+          </Text>
         </Flex>
       </Flex>
     </Wrap>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontWeight: '600',
+    fontSize: 12,
+    textAlign: 'center',
+  },
+});

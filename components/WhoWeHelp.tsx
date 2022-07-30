@@ -63,7 +63,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#00f',
   },
   circleText: {
-    fontSize: 10,
+    textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 12,
     color: '#fff',
   },
 });
