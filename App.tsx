@@ -6,17 +6,20 @@ import { Header } from './components/Header';
 import { Instructions } from './components/Instruction';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { WhoWeHelp } from './components/WhoWeHelp';
+import { AuthProvider } from './provider/AuthProvider';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header />
-      <ScrollView>
-        <WelcomeBanner />
-        <Instructions />
-        <WhoWeHelp />
-        <Footer />
-      </ScrollView>
+      <AuthProvider>
+        <Header />
+        <ScrollView>
+          <WelcomeBanner />
+          <Instructions />
+          <WhoWeHelp />
+          <Footer />
+        </ScrollView>
+      </AuthProvider>
       <StatusBar style='auto' />
     </View>
   );
