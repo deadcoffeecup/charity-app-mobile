@@ -20,16 +20,17 @@ interface LoginFormValues {
 const initialValues: LoginFormValues = { email: '', password: '' };
 
 export const Login: FC<ReactNode> = () => {
-  // const { currentUser, login } = useAuth();
+  const { currentUser, login } = useAuth();
 
   const { handleChange, handleSubmit } = useFormik({
     initialValues,
-    onSubmit:
-      // async (values) => {
-      // try {
-      //   await login(values.email, values.password);
-      // } catch {}
-      (values) => alert(JSON.stringify(values, null, 2)),
+    onSubmit: async (values) => {
+      try {
+        await login(values.email, values.password);
+      } catch {
+        console.warn('Login problem');
+      }
+    },
   });
 
   return (
