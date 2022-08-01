@@ -9,6 +9,7 @@ import {
   Field,
   FieldProps,
   prepareDataForValidation,
+  useFormik,
 } from 'formik';
 
 import { useAuth } from '../context/AuthContext';
@@ -19,41 +20,38 @@ interface LoginFormValues {
 const initialValues: LoginFormValues = { email: '', password: '' };
 
 export const Login: FC<ReactNode> = () => {
-  //   const { login, currentUser } = useAuth();
-  const [loginValues, setLoginValues] = useState<LoginFormValues>({
-    email: '',
-    password: '',
+  // const { currentUser, login } = useAuth();
+
+  const { handleChange, handleSubmit } = useFormik({
+    initialValues,
+    onSubmit:
+      // async (values) => {
+      // try {
+      //   await login(values.email, values.password);
+      // } catch {}
+      (values) => alert(JSON.stringify(values, null, 2)),
   });
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
-  const handleSubmit = () => {};
-
-  // async function handleSubmit() {
-  //   try {
-  //     setError('');
-  //     await login(emailRef.current.value, passwordRef.current.value);
-  //   } catch {
-  //     setError('failed to log in');
-  //   }
-  // }
   return (
     <Flex>
       <View>
         <Text>Log in</Text>
         <Form onSubmit={handleSubmit}>
           <Field
-            ref={emailRef}
+            onChange={() => handleChange('email')}
             keyboardType='email-address'
             placeholder='email'
           />
-          <Field ref={passwordRef} placeholder='password' />
-          <Button onPress={() => {}} title='Login' />
+          <Field
+            onChange={() => handleChange('password')}
+            placeholder='password'
+          />
+          <Button onPress={() => handleSubmit} title='Login' />
         </Form>
       </View>
       <View>
         Need an account?
-        <Button onPress={handleSubmit} title='Sign up!' />
+        <Button onPress={() => handleSubmit} title='Sign up!' />
       </View>
     </Flex>
   );
