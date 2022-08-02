@@ -13,26 +13,31 @@ import {
 } from 'formik';
 
 import { useAuth } from '../context/AuthContext';
-interface LoginFormValues {
+interface SignupFormValues {
   email: string;
   password: string;
+  confirmPassword: string;
 }
-const initialValues: LoginFormValues = { email: '', password: '' };
+const initialValues: SignupFormValues = {
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
-export const Login: FC<ReactNode> = () => {
-  const { currentUser, login } = useAuth();
+export const Signup: FC<ReactNode> = () => {
+  const { currentUser, signup } = useAuth();
 
   return (
     <Flex>
       <View>
-        <Text>Log in</Text>
+        <Text>Sign up</Text>
         <Formik
           initialValues={initialValues}
           onSubmit={async (values) => {
             try {
-              await login(values.email, values.password);
+              await signup(values.email, values.password);
             } catch {
-              console.warn('Login problem');
+              console.warn('sign up problem');
             }
           }}
         >
@@ -48,14 +53,19 @@ export const Login: FC<ReactNode> = () => {
                 onBlur={handleBlur('password')}
                 value={values.password}
               />
-              <Button onPress={() => handleSubmit()} title='Login' />
+              <TextInput
+                onChangeText={handleChange('confirmPassword')}
+                onBlur={handleBlur('confirmPassword')}
+                value={values.confirmPassword}
+              />
+              <Button onPress={() => handleSubmit()} title='signup' />
             </View>
           )}
         </Formik>
       </View>
       <View>
-        Need an account?
-        <Button onPress={() => {}} title='Sign up!' />
+        Already have an account?
+        <Button onPress={() => {}} title='Log in!' />
       </View>
     </Flex>
   );

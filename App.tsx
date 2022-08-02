@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Instructions } from './components/Instruction';
 import { Login } from './components/Login';
+import { Signup } from './components/Signup';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { WhoWeHelp } from './components/WhoWeHelp';
 import { AuthProvider } from './provider/AuthProvider';
@@ -19,7 +20,8 @@ export default function App() {
           <Instructions />
           <WhoWeHelp />
           <Footer /> */}
-          <Login />
+          {/* <Login /> */}
+          <Signup />
         </ScrollView>
       </AuthProvider>
       <StatusBar style='auto' />
