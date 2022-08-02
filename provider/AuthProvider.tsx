@@ -1,18 +1,17 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   User,
-  UserCredential,
 } from 'firebase/auth';
 import { AuthContextType } from '../context/AuthContext';
 
 import { auth } from '../firebaseConfig';
 import { AuthContext } from '../context/AuthContext';
 
-export const AuthProvider: React.FC<React.ReactNode> = ({ children }) => {
+export const AuthProvider: React.FC<ReactNode> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 

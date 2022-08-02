@@ -22,7 +22,7 @@ const initialValues: LoginFormValues = { email: '', password: '' };
 export const Login: FC<ReactNode> = () => {
   const { currentUser, login } = useAuth();
 
-  const { handleChange, handleSubmit } = useFormik({
+  const { values, handleChange, handleSubmit } = useFormik({
     initialValues,
     onSubmit: async (values) => {
       try {
@@ -37,22 +37,30 @@ export const Login: FC<ReactNode> = () => {
     <Flex>
       <View>
         <Text>Log in</Text>
-        <Form onSubmit={handleSubmit}>
-          <Field
-            onChange={() => handleChange('email')}
-            keyboardType='email-address'
-            placeholder='email'
-          />
-          <Field
-            onChange={() => handleChange('password')}
-            placeholder='password'
-          />
-          <Button onPress={() => handleSubmit} title='Login' />
-        </Form>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values) => console.log(values)}
+        >
+          {({ handleChange, handleBlur, handleSubmit, values }) => (
+            <View>
+              <TextInput
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+              />
+              <TextInput
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={values.password}
+              />
+              <Button onPress={() => handleSubmit()} title='Login' />
+            </View>
+          )}
+        </Formik>
       </View>
       <View>
         Need an account?
-        <Button onPress={() => handleSubmit} title='Sign up!' />
+        <Button onPress={() => handleSubmit()} title='Sign up!' />
       </View>
     </Flex>
   );

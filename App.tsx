@@ -4,6 +4,7 @@ import { Footer } from './components/Footer';
 
 import { Header } from './components/Header';
 import { Instructions } from './components/Instruction';
+import { Login } from './components/Login';
 import { WelcomeBanner } from './components/WelcomeBanner';
 import { WhoWeHelp } from './components/WhoWeHelp';
 import { AuthProvider } from './provider/AuthProvider';
@@ -14,10 +15,11 @@ export default function App() {
       <AuthProvider>
         <Header />
         <ScrollView>
-          <WelcomeBanner />
+          {/* <WelcomeBanner />
           <Instructions />
           <WhoWeHelp />
-          <Footer />
+          <Footer /> */}
+          <Login />
         </ScrollView>
       </AuthProvider>
       <StatusBar style='auto' />

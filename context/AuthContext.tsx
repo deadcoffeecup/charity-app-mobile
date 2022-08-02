@@ -8,12 +8,9 @@ export type AuthContextType = {
   logout: () => Promise<void>;
 };
 
-export const AuthContext = createContext<AuthContextType>({
-  currentUser: null,
-  signup: (email: string, password: string) => Promise.resolve(),
-  login: (email: string, password: string) => Promise.resolve(),
-  logout: () => Promise.resolve(),
-});
+export const AuthContext = createContext<AuthContextType>(
+  {} as AuthContextType
+);
 
 export const useAuth = () => {
   return useContext(AuthContext);
