@@ -10,31 +10,41 @@ import { WelcomeBanner } from './components/WelcomeBanner';
 import { WhoWeHelp } from './components/WhoWeHelp';
 import { AuthProvider } from './provider/AuthProvider';
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text } from '@react-native-material/core';
+
+function Dupa() {
   return (
-    <View style={styles.container}>
-      <AuthProvider>
-        <Header />
-        <ScrollView>
-          {/* <WelcomeBanner />
-          <Instructions />
-          <WhoWeHelp />
-          <Footer /> */}
-          {/* <Login /> */}
-          <Signup />
-        </ScrollView>
-      </AuthProvider>
-      <StatusBar style='auto' />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text variant='caption'>Dupa</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    top: 50,
-    width: '100%',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <AuthProvider>
+        <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name='Login'
+            component={Login}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name='Signup'
+            component={Signup}
+          />
+        </Stack.Navigator>
+      </AuthProvider>
+    </NavigationContainer>
+  );
+}

@@ -12,19 +12,35 @@ import {
   useFormik,
 } from 'formik';
 
+import { Header } from './Header';
+
 import { useAuth } from '../context/AuthContext';
+import {
+  Link,
+  useNavigation,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import { Signup } from './Signup';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 interface LoginFormValues {
   email: string;
   password: string;
 }
 const initialValues: LoginFormValues = { email: '', password: '' };
 
-export const Login: FC<ReactNode> = () => {
-  const { currentUser, login } = useAuth();
+type RootStackParamList = {
+  Login: undefined;
+  Signup: undefined;
+};
 
+type Props = NativeStackScreenProps<RootStackParamList, 'Signup', 'Login'>;
+
+export const Login: FC<Props> = ({ navigation }) => {
+  const { currentUser, login } = useAuth();
   return (
-    <Flex>
+    <Flex style={{ top: 50 }}>
       <View>
+        <Header />
         <Text>Log in</Text>
         <Formik
           initialValues={initialValues}
@@ -54,8 +70,11 @@ export const Login: FC<ReactNode> = () => {
         </Formik>
       </View>
       <View>
-        Need an account?
-        <Button onPress={() => {}} title='Sign up!' />
+        <Text> Need an account?</Text>
+        <Button
+          onPress={() => navigation.navigate('Signup')}
+          title='Sign up!'
+        />
       </View>
     </Flex>
   );
