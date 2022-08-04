@@ -11,6 +11,7 @@ import {
   prepareDataForValidation,
   useFormik,
 } from 'formik';
+import { PropsType } from '../App';
 
 import { useAuth } from '../context/AuthContext';
 interface SignupFormValues {
@@ -24,7 +25,7 @@ const initialValues: SignupFormValues = {
   confirmPassword: '',
 };
 
-export const Signup: FC<ReactNode> = () => {
+export const Signup: FC<PropsType> = ({ navigation }) => {
   const { currentUser, signup } = useAuth();
 
   return (
@@ -65,7 +66,7 @@ export const Signup: FC<ReactNode> = () => {
       </View>
       <View>
         Already have an account?
-        <Button onPress={() => {}} title='Log in!' />
+        <Button onPress={() => navigation.navigate('Login')} title='Log in!' />
       </View>
     </Flex>
   );

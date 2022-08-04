@@ -22,25 +22,19 @@ import {
 } from '@react-navigation/native';
 import { Signup } from './Signup';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PropsType } from '../App';
+
 interface LoginFormValues {
   email: string;
   password: string;
 }
 const initialValues: LoginFormValues = { email: '', password: '' };
 
-type RootStackParamList = {
-  Login: undefined;
-  Signup: undefined;
-};
-
-type Props = NativeStackScreenProps<RootStackParamList, 'Signup', 'Login'>;
-
-export const Login: FC<Props> = ({ navigation }) => {
+export const Login: FC<PropsType> = ({ navigation }) => {
   const { currentUser, login } = useAuth();
   return (
     <Flex style={{ top: 50 }}>
       <View>
-        <Header />
         <Text>Log in</Text>
         <Formik
           initialValues={initialValues}

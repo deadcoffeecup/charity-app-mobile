@@ -1,26 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Footer } from './components/Footer';
-
-import { Header } from './components/Header';
-import { Instructions } from './components/Instruction';
-import { Login } from './components/Login';
-import { Signup } from './components/Signup';
-import { WelcomeBanner } from './components/WelcomeBanner';
-import { WhoWeHelp } from './components/WhoWeHelp';
 import { AuthProvider } from './provider/AuthProvider';
+import {
+  HeaderButton,
+  HeaderButtons,
+  Item,
+} from 'react-navigation-header-buttons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text } from '@react-native-material/core';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import { Button, Icon, IconButton, Text } from '@react-native-material/core';
+import { Platform } from 'react-native';
+import { Login } from './components/Login';
+import { Signup } from './components/Signup';
+import { CustomHeaderButton } from './components/customHeaderButtons';
 
-function Dupa() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text variant='caption'>Dupa</Text>
-    </View>
-  );
-}
+export type RootStackParamList = {
+  Login: undefined;
+  Signup: undefined;
+};
+
+export type PropsType = NativeStackScreenProps<
+  RootStackParamList,
+  'Signup',
+  'Login'
+>;
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +37,19 @@ export default function App() {
         <Stack.Navigator initialRouteName='Login'>
           <Stack.Screen
             options={{
-              headerShown: false,
+              title: '',
+              headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                  <Item
+                    title={'menu'}
+                    iconName={'menu'}
+                    onPress={() => {
+                      alert('click');
+                    }}
+                  />
+                </HeaderButtons>
+              ),
+              headerLeft: () => <Text>Logo</Text>,
             }}
             name='Login'
             component={Login}
