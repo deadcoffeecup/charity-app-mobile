@@ -1,5 +1,5 @@
 import { Button, Flex, Text, TextInput } from '@react-native-material/core';
-import React, { FC, ReactNode, useRef, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import {
   Formik,
@@ -11,34 +11,39 @@ import {
   prepareDataForValidation,
   useFormik,
 } from 'formik';
-import { PropsType } from '../App';
 
-import { useAuth } from '../context/AuthContext';
-interface SignupFormValues {
+import { useAuth } from '../../context/AuthContext';
+import {
+  Link,
+  useNavigation,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PropsType } from '../../App';
+
+interface LoginFormValues {
   email: string;
   password: string;
-  confirmPassword: string;
 }
-const initialValues: SignupFormValues = {
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
+const initialValues: LoginFormValues = { email: '', password: '' };
 
-export const Signup: FC<PropsType> = ({ navigation }) => {
-  const { currentUser, signup } = useAuth();
+export const Login: FC<PropsType> = ({ navigation }) => {
+  const { currentUser, login } = useAuth();
+  useEffect(() => {
+    !!currentUser && navigation.navigate('Main');
+  }, [currentUser]);
 
   return (
-    <Flex>
+    <Flex style={{ top: 50 }}>
       <View>
-        <Text>Sign up</Text>
+        <Text>Log in</Text>
         <Formik
           initialValues={initialValues}
           onSubmit={async (values) => {
             try {
-              await signup(values.email, values.password);
+              await login(values.email, values.password);
             } catch {
-              console.warn('sign up problem');
+              console.warn('Login problem');
             }
           }}
         >
@@ -54,19 +59,17 @@ export const Signup: FC<PropsType> = ({ navigation }) => {
                 onBlur={handleBlur('password')}
                 value={values.password}
               />
-              <TextInput
-                onChangeText={handleChange('confirmPassword')}
-                onBlur={handleBlur('confirmPassword')}
-                value={values.confirmPassword}
-              />
-              <Button onPress={() => handleSubmit()} title='signup' />
+              <Button onPress={() => handleSubmit()} title='Login' />
             </View>
           )}
         </Formik>
       </View>
       <View>
-        Already have an account?
-        <Button onPress={() => navigation.navigate('Login')} title='Log in!' />
+        <Text> Need an account?</Text>
+        <Button
+          onPress={() => navigation.navigate('Signup')}
+          title='Sign up!'
+        />
       </View>
     </Flex>
   );

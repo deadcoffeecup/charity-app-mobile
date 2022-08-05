@@ -13,13 +13,15 @@ import {
 } from '@react-navigation/native-stack';
 import { Button, Icon, IconButton, Text } from '@react-native-material/core';
 import { Platform } from 'react-native';
-import { Login } from './components/Login';
-import { Signup } from './components/Signup';
+import { Login } from './components/screens/Login';
+import Main from './components/Main';
+import { Signup } from './components/screens/Signup';
 import { CustomHeaderButton } from './components/customHeaderButtons';
 
 export type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
+  Main: undefined;
 };
 
 export type PropsType = NativeStackScreenProps<
@@ -56,10 +58,41 @@ export default function App() {
           />
           <Stack.Screen
             options={{
-              headerShown: false,
+              title: '',
+              headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                  <Item
+                    title={'menu'}
+                    iconName={'menu'}
+                    onPress={() => {
+                      alert('click');
+                    }}
+                  />
+                </HeaderButtons>
+              ),
+              headerLeft: () => <Text>Logo</Text>,
             }}
             name='Signup'
             component={Signup}
+          />
+          <Stack.Screen
+            options={{
+              title: '',
+              headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                  <Item
+                    title={'menu'}
+                    iconName={'menu'}
+                    onPress={() => {
+                      alert('click');
+                    }}
+                  />
+                </HeaderButtons>
+              ),
+              headerLeft: () => <Text>Logo</Text>,
+            }}
+            name='Main'
+            component={Main}
           />
         </Stack.Navigator>
       </AuthProvider>

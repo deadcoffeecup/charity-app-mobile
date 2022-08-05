@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Text } from '@react-native-material/core';
-import React from 'react';
+import React, { FC } from 'react';
+import { PropsType } from '../../App';
 
-export const Footer = () => {
+export const Footer: FC<PropsType> = ({ navigation }) => {
   return (
     <Box pb={100} m={10} h={200}>
       <Text>Skontaktuj się z nami</Text>
@@ -13,7 +14,10 @@ export const Footer = () => {
           variant='text'
         />
       </Flex>
-      <Button title='Załóż konto' />
+      <Button
+        onPress={() => navigation.navigate('Login')}
+        title='Załóż konto'
+      />
     </Box>
   );
 };

@@ -11,7 +11,7 @@ import { initialState as initialValues } from '../../app/form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
-export default function FC() {
+export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
 
   const renderStep = (step: number) => {
