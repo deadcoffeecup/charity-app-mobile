@@ -7,7 +7,6 @@ import { Step2 } from './Step2';
 import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 
-import { initialState as initialValues } from '../../app/form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
@@ -29,13 +28,5 @@ export default function () {
     }
   };
 
-  return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
-      {...renderStep(stepNumber)}
-    ></Formik>
-  );
+  return { ...renderStep(stepNumber) };
 }

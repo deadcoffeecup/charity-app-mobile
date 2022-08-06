@@ -7,14 +7,15 @@ import { Footer } from './Footer';
 import { WelcomeBanner } from './WelcomeBanner';
 import { Instructions } from './Instructions';
 import { WhoWeHelp } from './WhoWeHelp';
+import { PropsType } from '../../App';
 
-export default function () {
+export default function ({ navigation }: any) {
   return (
     <ScrollView>
       <WelcomeBanner />
       <WhoWeHelp />
       <Instructions />
-      <Footer />
+      <Footer navigation={navigation} />
     </ScrollView>
   );
 }
