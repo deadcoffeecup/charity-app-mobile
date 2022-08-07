@@ -3,7 +3,7 @@ import React from 'react';
 
 import RNPickerSelect from 'react-native-picker-select';
 import { useDispatch } from 'react-redux';
-import { nextStep, prevStep } from '../../app/form';
+import { nextStep, prevStep } from '../../../app/form';
 
 export const Step2 = () => {
   const dispatch = useDispatch();

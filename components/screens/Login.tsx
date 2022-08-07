@@ -28,10 +28,7 @@ interface LoginFormValues {
 const initialValues: LoginFormValues = { email: '', password: '' };
 
 export const Login: FC<PropsType> = ({ navigation }) => {
-  const { currentUser, login } = useAuth();
-  useEffect(() => {
-    !!currentUser && navigation.navigate('Main');
-  }, [currentUser]);
+  const { login } = useAuth();
 
   return (
     <Flex style={{ top: 50 }}>
@@ -42,6 +39,7 @@ export const Login: FC<PropsType> = ({ navigation }) => {
           onSubmit={async (values) => {
             try {
               await login(values.email, values.password);
+              navigation.navigate('Main');
             } catch {
               console.warn('Login problem');
             }

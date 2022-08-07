@@ -1,14 +1,13 @@
-import { Text } from '@react-native-material/core';
-import { Formik } from 'formik';
-import React, { FC, ReactNode, useRef, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
 import { Step3 } from './Step3';
 import { Step4 } from './Step4';
-
-import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
+import { Summary } from './Summary';
+import { RootState } from '../../../app/store';
+import { View } from 'react-native';
 
 export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
@@ -23,10 +22,11 @@ export default function () {
         return <Step3 />;
       case 4:
         return <Step4 />;
+      case 5:
+        return <Summary />;
       default:
         break;
     }
   };
-
-  return { ...renderStep(stepNumber) };
+  return <View>{renderStep(stepNumber)}</View>;
 }

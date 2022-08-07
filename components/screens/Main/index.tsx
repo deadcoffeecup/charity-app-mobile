@@ -1,13 +1,11 @@
-import { Text } from '@react-native-material/core';
-import { Formik } from 'formik';
-import React, { FC, ReactNode, useRef, useState } from 'react';
-
+import React from 'react';
 import { ScrollView } from 'react-native';
+
 import { Footer } from './Footer';
 import { WelcomeBanner } from './WelcomeBanner';
 import { Instructions } from './Instructions';
 import { WhoWeHelp } from './WhoWeHelp';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 import { Stats } from './Stats';
 import { OpenFormBanner } from './OpenFormBanner';
 
@@ -23,11 +21,8 @@ export default function ({ navigation }: any) {
       )}
       <WhoWeHelp />
       <Instructions />
-      {!!currentUser ? (
-        <OpenFormBanner navigation={navigation} />
-      ) : (
-        <Footer navigation={navigation} />
-      )}
+      {!!currentUser && <OpenFormBanner navigation={navigation} />}
+      <Footer navigation={navigation} />
     </ScrollView>
   );
 }

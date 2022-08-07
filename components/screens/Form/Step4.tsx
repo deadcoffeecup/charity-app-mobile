@@ -3,14 +3,15 @@ import { Formik } from 'formik';
 import React from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextStep, prevStep } from '../../app/form';
-import { RootState } from '../../app/store';
+import { nextStep, prevStep } from '../../../app/form';
+import { RootState } from '../../../app/store';
 
 export const Step4 = () => {
   const dispatch = useDispatch();
   const { adress, dateOfReceipt } = useSelector(
     (state: RootState) => state.formValues
   );
+  const initialValues = {};
 
   return (
     <Formik

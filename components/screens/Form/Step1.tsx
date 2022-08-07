@@ -4,7 +4,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { prevStep, nextStep } from '../../app/form';
+import { prevStep, nextStep } from '../../../app/form';
+const initialValues = {};
 
 export const Step1 = () => {
   const dispatch = useDispatch();

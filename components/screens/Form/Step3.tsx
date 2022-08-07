@@ -2,16 +2,21 @@ import { Button, Text, TextInput } from '@react-native-material/core';
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 
 import { Footer } from '../Main/Footer';
-import { prevStep, nextStep } from '../../app/form';
+import { prevStep, nextStep } from '../../../app/form';
+import { RootState } from '../../../app/store';
 
 const initialValues = {};
 
 export const Step3 = () => {
   const dispatch = useDispatch();
+  const { targetOrganisation } = useSelector(
+    (state: RootState) => state.formValues
+  );
+
   return (
     <>
       <Formik
@@ -60,10 +65,12 @@ export const Step3 = () => {
             <Text>osobom starszym</Text>
             <Field type='checkbox' name='targetGroup' value='bezrobotnym' />
             <Text>bezrobotnym</Text>
+            <Text>Wpisz nazwę konkretnej organizacji (opcjonalnie)</Text>
+
             <TextInput
               onChangeText={handleChange('targetOrganisation')}
               onBlur={handleBlur('targetOrganisation')}
-              value={}
+              value={targetOrganisation}
             />
 
             <Button

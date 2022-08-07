@@ -1,21 +1,17 @@
-import { AuthProvider } from './provider/AuthProvider';
-import {
-  HeaderButton,
-  HeaderButtons,
-  Item,
-} from 'react-navigation-header-buttons';
-import { Ionicons } from '@expo/vector-icons';
-
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { Button, Icon, IconButton, Text } from '@react-native-material/core';
-import { Platform } from 'react-native';
+import { Text } from '@react-native-material/core';
+
+import { AuthProvider } from './provider/AuthProvider';
 import { Login } from './components/screens/Login';
-import Main from './components/Main';
 import { Signup } from './components/screens/Signup';
+import Main from './components/screens/Main';
+import Form from './components/screens/Form';
+
 import { CustomHeaderButton } from './components/customHeaderButtons';
 
 export type RootStackParamList = {
@@ -36,7 +32,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='Main'>
           <Stack.Screen
             options={{
               title: '',
@@ -93,6 +89,25 @@ export default function App() {
             }}
             name='Main'
             component={Main}
+          />
+          <Stack.Screen
+            options={{
+              title: '',
+              headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                  <Item
+                    title={'menu'}
+                    iconName={'menu'}
+                    onPress={() => {
+                      alert('click');
+                    }}
+                  />
+                </HeaderButtons>
+              ),
+              headerLeft: () => <Text>Logo</Text>,
+            }}
+            name='Form'
+            component={Form}
           />
         </Stack.Navigator>
       </AuthProvider>
