@@ -1,8 +1,5 @@
 import { Box, Button, Flex, Text } from '@react-native-material/core';
-import { Formik } from 'formik';
 import React, { FC } from 'react';
-import { PropsType } from '../../App';
-import { initialState as initialValues } from '../../app/form';
 
 export const Footer: FC<any> = ({ navigation }) => {
   return (
@@ -17,7 +14,7 @@ export const Footer: FC<any> = ({ navigation }) => {
         />
       </Flex>
       <Button
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.navigate('Signup')}
         title='Załóż konto'
       />
     </Box>
