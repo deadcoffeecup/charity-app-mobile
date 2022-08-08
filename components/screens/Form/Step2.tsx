@@ -1,5 +1,6 @@
-import { Button } from '@react-native-material/core';
+import { Button, Flex } from '@react-native-material/core';
 import React from 'react';
+import { View } from 'react-native';
 
 import RNPickerSelect from 'react-native-picker-select';
 import { useDispatch } from 'react-redux';
@@ -8,9 +9,9 @@ import { nextStep, prevStep } from '../../../app/form';
 export const Step2 = () => {
   const dispatch = useDispatch();
   return (
-    <>
+    <Flex>
       <RNPickerSelect
-        onValueChange={(value) => console.log(value)}
+        onValueChange={(value) => alert(value)}
         items={[
           { label: '1', value: 1 },
           { label: '2', value: 2 },
@@ -27,6 +28,6 @@ export const Step2 = () => {
       />
       <Button title='Prev' onPress={() => dispatch(prevStep())} />
       <Button title='Next' onPress={() => dispatch(nextStep())} />
-    </>
+    </Flex>
   );
 };

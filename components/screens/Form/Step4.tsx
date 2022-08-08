@@ -25,27 +25,27 @@ export const Step4 = () => {
           <TextInput
             onChangeText={handleChange(['adress.street'])}
             value={adress.street}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={adress.city}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={adress.zipCode}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={adress.telephoneNumber?.toString()}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={dateOfReceipt.date?.toString()}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={dateOfReceipt.time?.toString()}
-          />{' '}
+          />
           <TextInput
             onChangeText={handleChange('targetOrganisation')}
             value={dateOfReceipt.notesForCourier}

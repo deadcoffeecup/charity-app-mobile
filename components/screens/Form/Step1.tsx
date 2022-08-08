@@ -3,52 +3,71 @@ import { Field, Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
-
-import { prevStep, nextStep } from '../../../app/form';
-const initialValues = {};
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { prevStep, nextStep, setStuff } from '../../../app/form';
+import { initialState } from '../../../app/form';
+const initialValues = initialState.stuff;
 
 export const Step1 = () => {
   const dispatch = useDispatch();
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={async (values) => {
-        console.warn(values);
-      }}
-    >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <View>
-          <Text>Checked</Text>
-          <Field
-            type='checkbox'
-            name='checked'
-            value='ubrania, które nadają się do ponownego użycia'
-          />
-          <Text>ubrania, które nadają się do ponownego użycia</Text>
-          <Field type='checkbox' name='checked' value='ubrania do wyrzucenia' />
-          <Text>ubrania do wyrzucenia</Text>
-          <Field type='checkbox' name='checked' value='zabawki' />
-          <Text>zabawki</Text>
-          <Field type='checkbox' name='checked' value='ksiażki' />
-          <Text>ksiażki</Text>
-          <Field type='checkbox' name='checked' value='inne' />
-          <Text>inne</Text>
-          <Button
-            title='Prev'
-            onPress={() => {
-              dispatch(prevStep());
-              handleSubmit();
-            }}
-          />
-          <Button
-            title='Next'
-            onPress={() => {
-              dispatch(nextStep());
-              handleSubmit();
-            }}
-          />
-        </View>
-      )}
-    </Formik>
+    <View>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={async (values) => {
+          // dispatch(setStuff(values))
+          console.log(values);
+        }}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values }) => (
+          <View>
+            <Text>Rzeczy do oddania</Text>
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='ubrania, które nadają się do ponownego użycia'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='ubrania do wyrzucenia'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='zabawki'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='ksiażki'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='inne'
+              onPress={() => {}}
+            />
+
+            <Button
+              title='Next'
+              onPress={() => {
+                dispatch(nextStep());
+                handleSubmit();
+              }}
+            />
+          </View>
+        )}
+      </Formik>
+    </View>
   );
 };

@@ -24,8 +24,8 @@ export default function () {
         return <Step4 />;
       case 5:
         return <Summary />;
-      default:
-        break;
+      // default:
+      //   break;
     }
   };
   return <View>{renderStep(stepNumber)}</View>;

@@ -8,6 +8,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Footer } from '../Main/Footer';
 import { prevStep, nextStep } from '../../../app/form';
 import { RootState } from '../../../app/store';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const initialValues = {};
 
@@ -18,7 +19,7 @@ export const Step3 = () => {
   );
 
   return (
-    <>
+    <View>
       <Formik
         initialValues={initialValues}
         onSubmit={async (values) => {
@@ -49,30 +50,54 @@ export const Step3 = () => {
               ]}
             />
             <Text>Komu chcesz pomóc?</Text>
-            <Field type='checkbox' name='targetGroup' value='dzieciom' />
-            <Text>dzieciom</Text>
-            <Field type='checkbox' name='targetGroup' value='samotnym matkom' />
-            <Text>samotnym matkom</Text>
-            <Field type='checkbox' name='targetGroup' value='bezdomnym' />
-            <Text>bezdomnym</Text>
-            <Field
-              type='checkbox'
-              name='targetGroup'
-              value='niepełnosprawnym'
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='dzieciom'
+              onPress={() => {}}
             />
-            <Text>niepełnosprawnym</Text>
-            <Field type='checkbox' name='targetGroup' value='osobom starszym' />
-            <Text>osobom starszym</Text>
-            <Field type='checkbox' name='targetGroup' value='bezrobotnym' />
-            <Text>bezrobotnym</Text>
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='samotnym matkom'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='bezdomnym'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='niepełnosprawnym'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='osobom starszym'
+              onPress={() => {}}
+            />
+            <BouncyCheckbox
+              textStyle={{
+                textDecorationLine: 'none',
+              }}
+              text='bezrobotnym'
+              onPress={() => {}}
+            />
             <Text>Wpisz nazwę konkretnej organizacji (opcjonalnie)</Text>
-
             <TextInput
               onChangeText={handleChange('targetOrganisation')}
               onBlur={handleBlur('targetOrganisation')}
               value={targetOrganisation}
             />
-
             <Button
               title='Prev'
               onPress={() => {
@@ -90,7 +115,6 @@ export const Step3 = () => {
           </View>
         )}
       </Formik>
-      <Footer />
-    </>
+    </View>
   );
 };

@@ -4,7 +4,7 @@ import type { RootState } from './store';
 
 export type FormValuesType = {
   stepNumber: number;
-  stuff: string[] | undefined;
+  stuff: string[];
   numberOfBags: number;
   voivodship: string;
   targetGroup: string[];
@@ -47,6 +47,7 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     nextStep: (state) => {
+      console.warn(state.stepNumber);
       state.stepNumber += 1;
     },
     prevStep: (state) => {
