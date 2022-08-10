@@ -8,6 +8,7 @@ import { Step4 } from './Step4';
 import { Summary } from './Summary';
 import { RootState } from '../../../app/store';
 import { View } from 'react-native';
+import Main from '../Main';
 
 export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
@@ -24,9 +25,9 @@ export default function () {
         return <Step4 />;
       case 5:
         return <Summary />;
-      // default:
-      //   break;
+      default:
+        return <Main />;
     }
   };
-  return <View>{renderStep(stepNumber)}</View>;
+  return <>{renderStep(stepNumber)}</>;
 }

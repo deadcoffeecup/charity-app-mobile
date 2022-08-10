@@ -66,7 +66,7 @@ export const formSlice = createSlice({
     },
     setTargetOrganisation: (
       state,
-      action: PayloadAction<{ value: string }>
+      action: PayloadAction<{ value: string | undefined }>
     ) => {
       state.targetOrganisation = action.payload.value;
     },
@@ -88,6 +88,7 @@ export const {
   setStuff,
   setNumberOfBags,
   setVoivodship,
+  setTargetOrganisation,
   setTargetGroup,
 } = formSlice.actions;
 

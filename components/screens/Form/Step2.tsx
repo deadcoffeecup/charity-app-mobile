@@ -1,17 +1,26 @@
 import { Button, Flex } from '@react-native-material/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import RNPickerSelect from 'react-native-picker-select';
-import { useDispatch } from 'react-redux';
-import { nextStep, prevStep } from '../../../app/form';
+import { useDispatch, useSelector } from 'react-redux';
+import { nextStep, prevStep, setNumberOfBags } from '../../../app/form';
+import { RootState } from '../../../app/store';
 
 export const Step2 = () => {
   const dispatch = useDispatch();
+  const { numberOfBags } = useSelector((state: RootState) => state.formValues);
+
+  const [values, setValues] = useState(numberOfBags);
   return (
     <Flex>
       <RNPickerSelect
-        onValueChange={(value) => alert(value)}
+        placeholder={
+          values === 0
+            ? { label: 'Wybierz ilość worków', value: 0 }
+            : { label: `Wybrano ${values} worków`, value: values }
+        }
+        onValueChange={(value) => setValues(value)}
         items={[
           { label: '1', value: 1 },
           { label: '2', value: 2 },
@@ -23,12 +32,24 @@ export const Step2 = () => {
           { label: '8', value: 8 },
           { label: '9', value: 9 },
           { label: '10', value: 10 },
-          { label: '>10', value: '>10' },
+          { label: 'Więcej niż 10', value: 'więcej niż 10' },
         ]}
       />
       <Flex m={20} justify='center' direction='row'>
-        <Button title='Cofnij' onPress={() => dispatch(prevStep())} />
-        <Button title='Dalej' onPress={() => dispatch(nextStep())} />
+        <Button
+          title='Cofnij'
+          onPress={() => {
+            dispatch(prevStep());
+            dispatch(setNumberOfBags({ value: values }));
+          }}
+        />
+        <Button
+          title='Dalej'
+          onPress={() => {
+            dispatch(nextStep());
+            dispatch(setNumberOfBags({ value: values }));
+          }}
+        />
       </Flex>
     </Flex>
   );
