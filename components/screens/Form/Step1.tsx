@@ -83,7 +83,7 @@ export const Step1 = () => {
       />
       <Flex m={10} justify='center' direction='row'>
         <Button
-          title='Next'
+          title='Dalej'
           onPress={() => {
             dispatch(nextStep());
             dispatch(setStuff({ value: values }));

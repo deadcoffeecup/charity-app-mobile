@@ -3,7 +3,13 @@ import { Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextStep, prevStep } from '../../../app/form';
+
+import {
+  setAdress,
+  setDateOfReceipt,
+  nextStep,
+  prevStep,
+} from '../../../app/form';
 import { RootState } from '../../../app/store';
 
 export const Step4 = () => {
@@ -12,67 +18,98 @@ export const Step4 = () => {
     (state: RootState) => state.formValues
   );
   const initialValues = {
-    adress: {
-      street: '',
-      city: '',
-      zipCode: '',
-      telephoneNumber: undefined,
-    },
-    dateOfReceipt: {
-      date: undefined,
-      time: undefined,
-    },
+    street: adress.street,
+    city: adress.city,
+    zipCode: adress.zipCode,
+    telephoneNumber: adress.telephoneNumber,
+    date: dateOfReceipt.date,
+    time: dateOfReceipt.time,
+    notesForCourier: dateOfReceipt.notesForCourier,
   };
 
   return (
     <View>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values) => {
-          console.warn(values);
+        onSubmit={(values) => {
+          dispatch(
+            setAdress({
+              value: {
+                street: values.street,
+                city: values.city,
+                zipCode: values.zipCode,
+                telephoneNumber: values.telephoneNumber,
+              },
+            })
+          );
+          dispatch(
+            setDateOfReceipt({
+              value: {
+                date: values.date,
+                time: values.time,
+                notesForCourier: values.notesForCourier,
+              },
+            })
+          );
         }}
       >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        {({ handleChange, handleSubmit, values }) => (
           <View>
             <Text>Ulica</Text>
             <TextInput
-              onChangeText={handleChange('adress.street')}
-              onBlur={handleBlur('targetOrganisation')}
+              value={values.street}
+              onChangeText={handleChange('street')}
             />
             <Text>Miasto</Text>
-            <TextInput onChangeText={handleChange('adress.city')} />
+            <TextInput
+              value={values.city}
+              onChangeText={handleChange('city')}
+            />
             <Text>Kod pocztowy</Text>
-            <TextInput onChangeText={handleChange('adress.zipCode')} />
+            <TextInput
+              value={values.zipCode}
+              onChangeText={handleChange('zipCode')}
+            />
             <Text>Telefon</Text>
             <TextInput
+              value={values.telephoneNumber?.toString()}
               keyboardType='phone-pad'
-              onChangeText={handleChange('adress.zipCode')}
+              onChangeText={handleChange('telephoneNumber')}
             />
             <Text>Data</Text>
-            <TextInput onChangeText={handleChange('dateOfReceipt.date')} />
+            <TextInput
+              value={values.date?.toString()}
+              onChangeText={handleChange('date')}
+            />
             <Text>Godzina</Text>
-            <TextInput onChangeText={handleChange('dateOfReceipt.time')} />
+            <TextInput
+              value={values.time?.toString()}
+              onChangeText={handleChange('time')}
+            />
             <Text>Notatka dla kuriera</Text>
             <TextInput
-              onChangeText={handleChange('dateOfReceipt.notesForCourier')}
+              value={values.notesForCourier}
+              onChangeText={handleChange('notesForCourier')}
             />
+            <Flex m={10} justify='center' direction='row'>
+              <Button
+                title='Cofnij'
+                onPress={() => {
+                  dispatch(prevStep());
+                  handleSubmit();
+                }}
+              />
+              <Button
+                title='Dalej'
+                onPress={() => {
+                  handleSubmit();
+                  dispatch(nextStep());
+                }}
+              />
+            </Flex>
           </View>
         )}
       </Formik>
-      <Flex m={10} justify='center' direction='row'>
-        <Button
-          title='Cofnij'
-          onPress={() => {
-            dispatch(prevStep());
-          }}
-        />
-        <Button
-          title='Dalej'
-          onPress={() => {
-            dispatch(nextStep());
-          }}
-        />
-      </Flex>
     </View>
   );
 };

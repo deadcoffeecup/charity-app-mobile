@@ -1,7 +1,6 @@
 import { Button, Flex, Text, TextInput } from '@react-native-material/core';
-import { Field, Formik } from 'formik';
+import { Formik } from 'formik';
 import React, { useState } from 'react';
-import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 

@@ -90,6 +90,8 @@ export const {
   setVoivodship,
   setTargetOrganisation,
   setTargetGroup,
+  setAdress,
+  setDateOfReceipt,
 } = formSlice.actions;
 
 export const selectForm = (state: RootState) => state.formValues;
