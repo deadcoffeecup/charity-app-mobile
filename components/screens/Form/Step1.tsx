@@ -1,4 +1,4 @@
-import { Button, Text } from '@react-native-material/core';
+import { Button, Flex, Text } from '@react-native-material/core';
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
@@ -57,14 +57,15 @@ export const Step1 = () => {
               text='inne'
               onPress={() => {}}
             />
-
-            <Button
-              title='Next'
-              onPress={() => {
-                dispatch(nextStep());
-                handleSubmit();
-              }}
-            />
+            <Flex m={10} justify='center' direction='row'>
+              <Button
+                title='Next'
+                onPress={() => {
+                  dispatch(nextStep());
+                  handleSubmit();
+                }}
+              />
+            </Flex>
           </View>
         )}
       </Formik>

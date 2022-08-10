@@ -47,7 +47,6 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     nextStep: (state) => {
-      console.warn(state.stepNumber);
       state.stepNumber += 1;
     },
     prevStep: (state) => {

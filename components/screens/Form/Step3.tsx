@@ -1,12 +1,12 @@
-import { Button, Text, TextInput } from '@react-native-material/core';
+import { Button, Flex, Text, TextInput } from '@react-native-material/core';
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 
-import { Footer } from '../Main/Footer';
 import { prevStep, nextStep } from '../../../app/form';
+
 import { RootState } from '../../../app/store';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
@@ -98,20 +98,22 @@ export const Step3 = () => {
               onBlur={handleBlur('targetOrganisation')}
               value={targetOrganisation}
             />
-            <Button
-              title='Prev'
-              onPress={() => {
-                dispatch(prevStep());
-                handleSubmit();
-              }}
-            />
-            <Button
-              title='Next'
-              onPress={() => {
-                dispatch(nextStep());
-                handleSubmit();
-              }}
-            />
+            <Flex m={10} justify='center' direction='row'>
+              <Button
+                title='Cofnij'
+                onPress={() => {
+                  dispatch(prevStep());
+                  handleSubmit();
+                }}
+              />
+              <Button
+                title='Dalej'
+                onPress={() => {
+                  dispatch(nextStep());
+                  handleSubmit();
+                }}
+              />
+            </Flex>
           </View>
         )}
       </Formik>

@@ -26,8 +26,10 @@ export const Step2 = () => {
           { label: '>10', value: '>10' },
         ]}
       />
-      <Button title='Prev' onPress={() => dispatch(prevStep())} />
-      <Button title='Next' onPress={() => dispatch(nextStep())} />
+      <Flex m={20} justify='center' direction='row'>
+        <Button title='Cofnij' onPress={() => dispatch(prevStep())} />
+        <Button title='Dalej' onPress={() => dispatch(nextStep())} />
+      </Flex>
     </Flex>
   );
 };
