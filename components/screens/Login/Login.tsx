@@ -12,14 +12,14 @@ import {
   useFormik,
 } from 'formik';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 import {
   Link,
   useNavigation,
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { PropsType } from '../../App';
+import { PropsType } from '../../../App';
 
 interface LoginFormValues {
   email: string;
@@ -33,7 +33,7 @@ export const Login: FC<PropsType> = ({ navigation }) => {
   return (
     <Flex style={{ top: 50 }}>
       <View>
-        <Text>Log in</Text>
+        <Text>Logowanie</Text>
         <Formik
           initialValues={initialValues}
           onSubmit={async (values) => {
@@ -47,11 +47,13 @@ export const Login: FC<PropsType> = ({ navigation }) => {
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View>
+              <Text>E-mail</Text>
               <TextInput
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
               />
+              <Text>Hasło</Text>
               <TextInput
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
@@ -63,10 +65,10 @@ export const Login: FC<PropsType> = ({ navigation }) => {
         </Formik>
       </View>
       <View>
-        <Text> Need an account?</Text>
+        <Text> Nie masz jeszcze konta?</Text>
         <Button
           onPress={() => navigation.navigate('Signup')}
-          title='Sign up!'
+          title='Zarejestruj się!'
         />
       </View>
     </Flex>

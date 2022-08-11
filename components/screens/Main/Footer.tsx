@@ -1,7 +1,9 @@
 import { Box, Button, Flex, Text } from '@react-native-material/core';
 import React, { FC } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 
 export const Footer: FC<any> = ({ navigation }) => {
+  const { currentUser } = useAuth();
   return (
     <Box pb={100} m={10} h={200}>
       <Text>Skontaktuj się z nami</Text>
@@ -13,10 +15,12 @@ export const Footer: FC<any> = ({ navigation }) => {
           variant='text'
         />
       </Flex>
-      <Button
-        onPress={() => navigation.navigate('Signup')}
-        title='Załóż konto'
-      />
+      {!currentUser && (
+        <Button
+          onPress={() => navigation.navigate('Signup')}
+          title='Załóż konto'
+        />
+      )}
     </Box>
   );
 };

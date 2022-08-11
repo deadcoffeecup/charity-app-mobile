@@ -11,9 +11,9 @@ import {
   prepareDataForValidation,
   useFormik,
 } from 'formik';
-import { PropsType } from '../../App';
+import { PropsType } from '../../../App';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 interface SignupFormValues {
   email: string;
   password: string;
@@ -34,7 +34,7 @@ export const Signup: FC<PropsType> = ({ navigation }) => {
   return (
     <Flex>
       <View>
-        <Text>Sign up</Text>
+        <Text>Rejestracja</Text>
         <Formik
           initialValues={initialValues}
           onSubmit={async (values) => {
@@ -47,16 +47,20 @@ export const Signup: FC<PropsType> = ({ navigation }) => {
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <View>
+              <Text>E-mail</Text>
               <TextInput
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
               />
+              <Text>Hasło</Text>
+
               <TextInput
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 value={values.password}
               />
+              <Text>Powtórz hasło</Text>
               <TextInput
                 onChangeText={handleChange('confirmPassword')}
                 onBlur={handleBlur('confirmPassword')}
@@ -68,9 +72,12 @@ export const Signup: FC<PropsType> = ({ navigation }) => {
         </Formik>
       </View>
       <View>
-        <Text>Already have an account?</Text>
-        <Button onPress={() => navigation.navigate('Login')} title='Log in!' />
-        <Button onPress={() => navigation.navigate('Main')} title='Main' />
+        <Text>Masz już konto?</Text>
+        <Button
+          onPress={() => navigation.navigate('Login')}
+          title='Zaloguj się'
+        />
+        <Button onPress={() => navigation.navigate('Main')} title='Powrót' />
       </View>
     </Flex>
   );
