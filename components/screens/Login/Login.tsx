@@ -13,13 +13,8 @@ import {
 } from 'formik';
 
 import { useAuth } from '../../../context/AuthContext';
-import {
-  Link,
-  useNavigation,
-  useNavigationContainerRef,
-} from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { PropsType } from '../../../App';
+import { NavPropsType } from '../../../App';
+import { NavButton } from '../../custom/NavButton';
 
 interface LoginFormValues {
   email: string;
@@ -27,7 +22,7 @@ interface LoginFormValues {
 }
 const initialValues: LoginFormValues = { email: '', password: '' };
 
-export const Login: FC<PropsType> = ({ navigation }) => {
+export const Login: FC<NavPropsType> = ({ navigation }) => {
   const { login } = useAuth();
 
   return (
@@ -66,10 +61,15 @@ export const Login: FC<PropsType> = ({ navigation }) => {
       </View>
       <View>
         <Text> Nie masz jeszcze konta?</Text>
-        <Button
+        <NavButton
+          navigation={navigation}
+          title='Zarejestruj się!'
+          screen='Signup'
+        />
+        {/* <Button
           onPress={() => navigation.navigate('Signup')}
           title='Zarejestruj się!'
-        />
+        /> */}
       </View>
     </Flex>
   );

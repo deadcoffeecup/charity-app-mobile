@@ -11,7 +11,7 @@ import {
   prepareDataForValidation,
   useFormik,
 } from 'formik';
-import { PropsType } from '../../../App';
+import { NavPropsType } from '../../../App';
 
 import { useAuth } from '../../../context/AuthContext';
 interface SignupFormValues {
@@ -25,7 +25,7 @@ const initialValues: SignupFormValues = {
   confirmPassword: '',
 };
 
-export const Signup: FC<PropsType> = ({ navigation }) => {
+export const Signup: FC<NavPropsType> = ({ navigation }) => {
   const { currentUser, signup } = useAuth();
   useEffect(() => {
     !!currentUser && navigation.navigate('Main');

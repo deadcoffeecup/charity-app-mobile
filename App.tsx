@@ -11,7 +11,7 @@ import { Signup } from './components/screens/Signup';
 import Main from './components/screens/Main';
 import Form from './components/screens/Form';
 
-import { CustomHeaderButton } from './components/customHeaderButtons';
+import { CustomHeaderButton } from './components/custom/customHeaderButtons';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 
@@ -21,7 +21,7 @@ export type RootStackParamList = {
   Main: undefined;
 };
 
-export type PropsType = NativeStackScreenProps<
+export type NavPropsType = NativeStackScreenProps<
   RootStackParamList,
   'Signup',
   'Login'
