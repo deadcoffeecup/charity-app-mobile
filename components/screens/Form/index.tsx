@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Button, Text } from '@react-native-material/core';
 
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
@@ -7,11 +8,30 @@ import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 import { Summary } from './Summary';
 import { RootState } from '../../../app/store';
-import { View } from 'react-native';
 import Main from '../Main';
+import { Footer } from '../Main/Footer';
 
 export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
+
+  const pagination = () => {
+    const paginationArr = [];
+    for (let index: number = 1; index < 5; index++) {
+      paginationArr.push(
+        <Button
+          style={
+            index === stepNumber
+              ? { backgroundColor: 'blue' }
+              : index > stepNumber
+              ? { backgroundColor: 'gray' }
+              : { backgroundColor: 'green' }
+          }
+          title={index === 5 ? '$' : index}
+        />
+      );
+    }
+    return paginationArr.map((el) => el);
+  };
 
   const renderStep = (step: number) => {
     switch (step) {
@@ -29,5 +49,15 @@ export default function () {
         return <Main />;
     }
   };
-  return <>{renderStep(stepNumber)}</>;
+  return (
+    <>
+      <Text>
+        Oddaj rzeczy, których już nie chcesz POTRZEBUJĄCYM Wystarczą 4 proste
+        kroki
+      </Text>
+      {pagination}
+      {renderStep(stepNumber)}
+      <Footer />
+    </>
+  );
 }

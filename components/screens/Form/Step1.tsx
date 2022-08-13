@@ -6,6 +6,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { nextStep, setStuff } from '../../../app/form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
+import { Footer } from '../Main/Footer';
 
 export const Step1 = () => {
   const dispatch = useDispatch();

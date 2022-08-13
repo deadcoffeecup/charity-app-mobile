@@ -14,6 +14,7 @@ import Form from './components/screens/Form';
 import { CustomHeaderButton } from './components/custom/customHeaderButtons';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { StatusBar } from 'expo-status-bar';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -34,7 +35,8 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <Provider store={store}>
-          <Stack.Navigator initialRouteName='Form'>
+          <StatusBar />
+          <Stack.Navigator initialRouteName='Main'>
             <Stack.Screen
               options={{
                 title: '',
