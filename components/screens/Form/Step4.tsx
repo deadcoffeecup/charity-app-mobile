@@ -2,6 +2,7 @@ import { Button, Flex, Text, TextInput } from '@react-native-material/core';
 import { Formik } from 'formik';
 import React from 'react';
 import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -28,7 +29,7 @@ export const Step4 = () => {
   };
 
   return (
-    <View>
+    <ScrollView>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
@@ -110,6 +111,6 @@ export const Step4 = () => {
           </View>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 };

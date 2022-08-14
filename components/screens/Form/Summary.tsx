@@ -22,7 +22,7 @@ export const Summary = () => {
     voivodship,
   } = useSelector((state: RootState) => state.formValues);
 
-  const data = {
+  const orderData = {
     stuff,
     numberOfBags,
     adress,
@@ -35,7 +35,7 @@ export const Summary = () => {
 
   const addPackageOrderToDb = async () => {
     if (currentUser !== null) {
-      await setDoc(doc(db, 'packageOrders', currentUser.uid), data);
+      await setDoc(doc(db, 'packageOrders', currentUser.uid), orderData);
     } else alert('no user logged');
   };
 
@@ -44,7 +44,7 @@ export const Summary = () => {
       <Text>Podsumowanie</Text>
       <Text>Jakie rzeczy</Text>
       {stuff.map((el) => (
-        <Text>{el}</Text>
+        <Text key={el}>{el}</Text>
       ))}
       <Flex m={10} justify='center' direction='row'>
         <Button

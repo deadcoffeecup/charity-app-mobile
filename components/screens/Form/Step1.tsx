@@ -1,5 +1,5 @@
 import { Button, Flex, Text } from '@react-native-material/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
@@ -12,6 +12,8 @@ export const Step1 = () => {
   const dispatch = useDispatch();
   const { stuff } = useSelector((state: RootState) => state.formValues);
   const [values, setValues] = useState(stuff);
+  const [error, setError] = useState('');
+
   const handleCheck = (text: string) => {
     if (values.includes(text)) {
       let idx = values.indexOf(text);
@@ -23,6 +25,18 @@ export const Step1 = () => {
   const handleIsChecked = (text: string) => {
     return values.includes(text);
   };
+  const validate = () => {
+    if (values.length === 0) {
+      setError('zaznacz przynajmniej jedną kategorię');
+    } else {
+      setError('');
+      dispatch(nextStep());
+    }
+  };
+  useEffect(() => {
+    dispatch(setStuff({ value: values }));
+  }, [values]);
+
   return (
     <>
       <Text>Rzeczy do oddania</Text>
@@ -82,12 +96,12 @@ export const Step1 = () => {
           handleCheck('inne');
         }}
       />
+      {!!error.length && <Text style={{ color: 'red' }}>{error}</Text>}
       <Flex m={10} justify='center' direction='row'>
         <Button
           title='Dalej'
           onPress={() => {
-            dispatch(nextStep());
-            dispatch(setStuff({ value: values }));
+            validate();
           }}
         />
       </Flex>
