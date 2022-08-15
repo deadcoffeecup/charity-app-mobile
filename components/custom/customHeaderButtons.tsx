@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Platform } from 'react-native';
-import { HeaderButton } from 'react-navigation-header-buttons';
+import {
+  HeaderButton,
+  HeaderButtons,
+  Item,
+} from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../../context/AuthContext';
 
 const CustomHeaderButton = (props: any) => {
   return (
@@ -14,4 +19,18 @@ const CustomHeaderButton = (props: any) => {
   );
 };
 
-export { CustomHeaderButton };
+export const MenuButton: FC<any> = ({ navigator }) => {
+  const { logout } = useAuth();
+  return (
+    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+      <Item
+        title={'menu'}
+        iconName={'menu'}
+        onPress={() => {
+          logout();
+          alert('logged out');
+        }}
+      />
+    </HeaderButtons>
+  );
+};

@@ -4,14 +4,21 @@ import React from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { prevStep, nextStep } from '../../../app/form';
-import { RootState } from '../../../app/store';
-import { useAuth } from '../../../context/AuthContext';
-import { db } from '../../../firebaseConfig';
+import { prevStep } from '../../../../app/form';
+import { RootState } from '../../../../app/store';
+import { useAuth } from '../../../../context/AuthContext';
+import { db } from '../../../../firebaseConfig';
 
 export const Summary = () => {
   const dispatch = useDispatch();
   const { currentUser } = useAuth();
+
+  const addPackageOrderToDb = async () => {
+    if (currentUser !== null) {
+      await setDoc(doc(db, 'packageOrders', currentUser.uid), orderData);
+    } else alert('no user logged');
+  };
+
   const {
     stuff,
     numberOfBags,
@@ -33,17 +40,11 @@ export const Summary = () => {
     userEmail: currentUser?.email,
   };
 
-  const addPackageOrderToDb = async () => {
-    if (currentUser !== null) {
-      await setDoc(doc(db, 'packageOrders', currentUser.uid), orderData);
-    } else alert('no user logged');
-  };
-
   return (
     <View>
       <Text>Podsumowanie</Text>
       <Text>Jakie rzeczy</Text>
-      {stuff.map((el) => (
+      {orderData.stuff.map((el) => (
         <Text key={el}>{el}</Text>
       ))}
       <Flex m={10} justify='center' direction='row'>

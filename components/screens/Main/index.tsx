@@ -19,7 +19,7 @@ export default function ({ navigation }: any) {
       ) : (
         <WelcomeBanner navigation={navigation} />
       )}
-      <WhoWeHelp />
+      <WhoWeHelp navigation={navigation} />
       <Instructions />
       {!!currentUser && <OpenFormBanner navigation={navigation} />}
       <Footer navigation={navigation} />

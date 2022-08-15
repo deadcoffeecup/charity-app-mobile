@@ -1,6 +1,6 @@
 import { Button, Flex, Text, TextInput } from '@react-native-material/core';
 import { Formik } from 'formik';
-import React from 'react';
+import React, { FC } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,10 +10,10 @@ import {
   setDateOfReceipt,
   nextStep,
   prevStep,
-} from '../../../app/form';
-import { RootState } from '../../../app/store';
+} from '../../../../app/form';
+import { RootState } from '../../../../app/store';
 
-export const Step4 = () => {
+export const Step4: FC = () => {
   const dispatch = useDispatch();
   const { adress, dateOfReceipt } = useSelector(
     (state: RootState) => state.formValues

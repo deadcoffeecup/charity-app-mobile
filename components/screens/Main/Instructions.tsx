@@ -1,9 +1,8 @@
-import { Button, IconButton, Text } from '@react-native-material/core';
+import { IconButton, Text } from '@react-native-material/core';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
-
 import { Wrap, Flex } from 'react-native-flex-layout';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const Instructions = () => {
   return (

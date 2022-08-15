@@ -1,18 +1,17 @@
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import { Text } from '@react-native-material/core';
+import { Provider } from 'react-redux';
+
 import { AuthProvider } from './provider/AuthProvider';
 import { Login } from './components/screens/Login';
 import { Signup } from './components/screens/Signup';
 import Main from './components/screens/Main';
 import Form from './components/screens/Form';
-
-import { CustomHeaderButton } from './components/custom/customHeaderButtons';
-import { Provider } from 'react-redux';
+import { MenuButton } from './components/custom/customHeaderButtons';
 import { store } from './app/store';
 import { StatusBar } from 'expo-status-bar';
 
@@ -40,18 +39,8 @@ export default function App() {
             <Stack.Screen
               options={{
                 title: '',
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title={'menu'}
-                      iconName={'menu'}
-                      onPress={() => {
-                        alert('click');
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
-                headerLeft: () => <Text>Logo</Text>,
+                headerRight: () => <MenuButton />,
+                headerLeft: () => <Text>Main Logo</Text>,
               }}
               name='Login'
               component={Login}
@@ -59,17 +48,7 @@ export default function App() {
             <Stack.Screen
               options={{
                 title: '',
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title={'menu'}
-                      iconName={'menu'}
-                      onPress={() => {
-                        alert('click');
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => <MenuButton />,
                 headerLeft: () => <Text>Logo</Text>,
               }}
               name='Signup'
@@ -78,17 +57,7 @@ export default function App() {
             <Stack.Screen
               options={{
                 title: '',
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title={'menu'}
-                      iconName={'menu'}
-                      onPress={() => {
-                        alert('click');
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => <MenuButton />,
                 headerLeft: () => <Text>Logo</Text>,
               }}
               name='Main'
@@ -97,17 +66,7 @@ export default function App() {
             <Stack.Screen
               options={{
                 title: '',
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title={'menu'}
-                      iconName={'menu'}
-                      onPress={() => {
-                        alert('click');
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => <MenuButton />,
                 headerLeft: () => <Text>Logo</Text>,
               }}
               name='Form'

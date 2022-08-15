@@ -3,6 +3,7 @@ import { Field, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import {
   setTargetOrganisation,
@@ -11,9 +12,7 @@ import {
   prevStep,
   nextStep,
 } from '../../../../app/form';
-
 import { RootState } from '../../../../app/store';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { targetGroupArr, voivodshipArr } from './consts';
 
 export const Step3 = () => {
@@ -26,7 +25,7 @@ export const Step3 = () => {
   const handleCheck = (targetGroup: string) => {
     if (checkboxesValue.includes(targetGroup)) {
       let idx = checkboxesValue.indexOf(targetGroup);
-      setCheckboxesValue((prev) => prev.splice(idx, 1));
+      setCheckboxesValue((prev) => prev.filter((el, id) => el[id] !== el[idx]));
     } else {
       setCheckboxesValue((prev) => [...prev, targetGroup]);
     }
@@ -36,25 +35,26 @@ export const Step3 = () => {
     return checkboxesValue.includes(targetGroup);
   };
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string>('');
   const [selectValue, setSelectValue] = useState(voivodship);
   const [checkboxesValue, setCheckboxesValue] = useState(targetGroup);
 
   useEffect(() => {
     dispatch(setTargetGroup({ value: checkboxesValue }));
     dispatch(setVoivodship({ value: selectValue }));
+    setError('');
   }, [selectValue, checkboxesValue]);
 
   const validate = (mode: string) => {
-    setError('');
     if (selectValue.length === 0) {
       setError((prev) => prev + `wybierz województwo \n`);
-    }
-    if (checkboxesValue.length === 0) {
-      setError((prev) => prev + `wybierz grupę której chcesz pomóc \n`);
-    }
-    if (error.length === 0) {
-      mode === 'next' ? dispatch(nextStep()) : dispatch(prevStep());
+      if (checkboxesValue.length === 0) {
+        setError((prev) => prev + `wybierz grupę której chcesz pomóc \n`);
+      }
+    } else {
+      if (error.length === 0) {
+        mode === 'next' ? dispatch(nextStep()) : dispatch(prevStep());
+      }
     }
   };
 
