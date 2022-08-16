@@ -14,6 +14,7 @@ import {
 } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { targetGroupArr, voivodshipArr } from './consts';
+import { StyledButton } from '../../../custom/NavButton';
 
 export const Step3 = () => {
   const dispatch = useDispatch();
@@ -104,13 +105,13 @@ export const Step3 = () => {
             />
             {!!error.length && <Text style={{ color: 'red' }}>{error}</Text>}
             <Flex m={10} justify='center' direction='row'>
-              <Button
+              <StyledButton
                 title='Cofnij'
                 onPress={() => {
                   validate('back');
                 }}
               />
-              <Button
+              <StyledButton
                 title='Dalej'
                 onPress={() => {
                   validate('next');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Text } from '@react-native-material/core';
+import { Button, Flex, Text } from '@react-native-material/core';
 
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
@@ -16,7 +16,7 @@ export default function () {
 
   const pagination = () => {
     const paginationArr = [];
-    for (let index: number = 1; index < 5; index++) {
+    for (let index: number = 1; index < 6; index++) {
       paginationArr.push(
         <Button
           style={
@@ -26,11 +26,15 @@ export default function () {
               ? { backgroundColor: 'gray' }
               : { backgroundColor: 'green' }
           }
-          title={index === 5 ? '$' : index}
+          title={index === 5 ? '$' : index.toString()}
         />
       );
     }
-    return paginationArr.map((el) => el);
+    return (
+      <Flex justify='center' direction='row'>
+        {paginationArr.map((el) => el)}
+      </Flex>
+    );
   };
 
   const renderStep = (step: number) => {
@@ -55,7 +59,7 @@ export default function () {
         Oddaj rzeczy, których już nie chcesz POTRZEBUJĄCYM Wystarczą 4 proste
         kroki
       </Text>
-      {pagination}
+      {pagination()}
       {renderStep(stepNumber)}
       <Footer />
     </>

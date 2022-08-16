@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { nextStep, prevStep, setNumberOfBags } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
+import { StyledButton } from '../../../custom/NavButton';
 import { bagsPickerArr } from './consts';
 
 export const Step2 = () => {
@@ -43,13 +44,13 @@ export const Step2 = () => {
       />
       {!!error.length && <Text style={{ color: 'red' }}>{error}</Text>}
       <Flex m={20} justify='center' direction='row'>
-        <Button
+        <StyledButton
           title='Cofnij'
           onPress={() => {
             validate('back');
           }}
         />
-        <Button
+        <StyledButton
           title='Dalej'
           onPress={() => {
             validate('next');
