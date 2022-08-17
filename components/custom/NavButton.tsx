@@ -1,21 +1,22 @@
 import React, { FC } from 'react';
-import { Button } from 'react-native';
+import { Button } from '@react-native-material/core';
 import styled from 'styled-components';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
+import { useNavigation } from '@react-navigation/native';
 
 interface PropsType {
-  navigation: any;
   title: string;
-  screen: string;
+  screen: keyof RootStackParamList;
 }
-
 export const StyledButton = styled(Button)`
-  background-color: #0076dd;
+  background-color: cadetblue;
   color: #fff;
-  width: min-content;
-  padding: 10px;
 `;
 
-export const NavButton: FC<PropsType> = ({ navigation, title, screen }) => {
+export const NavButton: FC<PropsType> = ({ title, screen }) => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <StyledButton onPress={() => navigation.navigate(screen)} title={title} />
   );

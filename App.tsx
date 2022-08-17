@@ -19,6 +19,7 @@ export type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
   Main: undefined;
+  Form: undefined;
 };
 
 export type NavPropsType = NativeStackScreenProps<

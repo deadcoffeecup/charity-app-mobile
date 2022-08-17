@@ -12,6 +12,7 @@ import {
   prevStep,
 } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
+import { StyledButton } from '../../../custom/NavButton';
 
 export const Step4: FC = () => {
   const dispatch = useDispatch();
@@ -93,14 +94,14 @@ export const Step4: FC = () => {
               onChangeText={handleChange('notesForCourier')}
             />
             <Flex m={10} justify='center' direction='row'>
-              <Button
+              <StyledButton
                 title='Cofnij'
                 onPress={() => {
                   dispatch(prevStep());
                   handleSubmit();
                 }}
               />
-              <Button
+              <StyledButton
                 title='Dalej'
                 onPress={() => {
                   handleSubmit();

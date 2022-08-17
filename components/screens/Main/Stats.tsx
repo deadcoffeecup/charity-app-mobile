@@ -3,8 +3,9 @@ import React, { FC, useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 
 import { db } from '../../../firebaseConfig';
+import { NavButton } from '../../custom/NavButton';
 
-export const Stats: FC<any> = ({ navigation }) => {
+export const Stats: FC = () => {
   const [numberOfPackages, setNumberOfPackages] = useState(0);
   const sub = async () => {
     const querySnapshot = await getDocs(collection(db, 'packageOrders'));
@@ -20,10 +21,7 @@ export const Stats: FC<any> = ({ navigation }) => {
 
   return (
     <Flex direction='row'>
-      <Button
-        title='Oddaj rzeczy'
-        onPress={() => navigation.navigate('Form')}
-      />
+      <NavButton title='Oddaj rzeczy' screen='Form' />
       <Text>Stats:{numberOfPackages}</Text>
     </Flex>
   );

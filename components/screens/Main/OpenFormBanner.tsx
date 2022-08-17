@@ -1,16 +1,12 @@
 import { Button } from '@react-native-material/core';
 import React, { FC } from 'react';
 import { View } from 'react-native';
+import { NavButton } from '../../custom/NavButton';
 
-export const OpenFormBanner: FC<any> = ({ navigation }) => {
+export const OpenFormBanner: FC = () => {
   return (
     <View>
-      <Button
-        onPress={() => {
-          navigation.navigate('Form');
-        }}
-        title='Oddaj rzeczy'
-      />
+      <NavButton screen='Form' title='Oddaj rzeczy' />
     </View>
   );
 };

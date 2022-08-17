@@ -52,6 +52,9 @@ export const formSlice = createSlice({
     prevStep: (state) => {
       state.stepNumber -= 1;
     },
+    setStep: (state, action: PayloadAction<number>) => {
+      state.stepNumber = action.payload;
+    },
     setStuff: (state, action: PayloadAction<{ value: string[] }>) => {
       state.stuff = action.payload.value;
     },
@@ -85,6 +88,7 @@ export const formSlice = createSlice({
 export const {
   nextStep,
   prevStep,
+  setStep,
   setStuff,
   setNumberOfBags,
   setVoivodship,

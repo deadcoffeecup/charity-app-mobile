@@ -14,7 +14,7 @@ import {
 
 import { useAuth } from '../../../context/AuthContext';
 import { NavPropsType } from '../../../App';
-import { NavButton } from '../../custom/NavButton';
+import { NavButton, StyledButton } from '../../custom/NavButton';
 
 interface LoginFormValues {
   email: string;
@@ -54,22 +54,14 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
                 onBlur={handleBlur('password')}
                 value={values.password}
               />
-              <Button onPress={() => handleSubmit()} title='Login' />
+              <StyledButton onPress={() => handleSubmit()} title='Login' />
             </View>
           )}
         </Formik>
       </View>
       <View>
         <Text> Nie masz jeszcze konta?</Text>
-        <NavButton
-          navigation={navigation}
-          title='Zarejestruj się!'
-          screen='Signup'
-        />
-        {/* <Button
-          onPress={() => navigation.navigate('Signup')}
-          title='Zarejestruj się!'
-        /> */}
+        <NavButton title='Zarejestruj się!' screen='Signup' />
       </View>
     </Flex>
   );

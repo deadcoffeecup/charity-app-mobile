@@ -9,20 +9,16 @@ import { useAuth } from '../../../context/AuthContext';
 import { Stats } from './Stats';
 import { OpenFormBanner } from './OpenFormBanner';
 
-export default function ({ navigation }: any) {
+export default function () {
   const { currentUser } = useAuth();
 
   return (
     <ScrollView>
-      {!!currentUser ? (
-        <Stats navigation={navigation} />
-      ) : (
-        <WelcomeBanner navigation={navigation} />
-      )}
-      <WhoWeHelp navigation={navigation} />
+      {!!currentUser ? <Stats /> : <WelcomeBanner />}
+      <WhoWeHelp />
       <Instructions />
-      {!!currentUser && <OpenFormBanner navigation={navigation} />}
-      <Footer navigation={navigation} />
+      {!!currentUser && <OpenFormBanner />}
+      <Footer />
     </ScrollView>
   );
 }

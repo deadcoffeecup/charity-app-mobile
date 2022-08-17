@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Flex, Text } from '@react-native-material/core';
 
 import { Step1 } from './Step1';
@@ -10,23 +10,27 @@ import { Summary } from './Summary';
 import { RootState } from '../../../app/store';
 import Main from '../Main';
 import { Footer } from '../Main/Footer';
+import { setStep } from '../../../app/form';
 
 export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
-
+  const dispatch = useDispatch();
   const pagination = () => {
     const paginationArr = [];
     for (let index: number = 1; index < 6; index++) {
       paginationArr.push(
         <Button
+          key={index}
           style={
             index === stepNumber
-              ? { backgroundColor: 'blue' }
+              ? { backgroundColor: 'cadetblue' }
               : index > stepNumber
-              ? { backgroundColor: 'gray' }
-              : { backgroundColor: 'green' }
+              ? { backgroundColor: 'lightgray' }
+              : { backgroundColor: '#5f9ea095' }
           }
           title={index === 5 ? '$' : index.toString()}
+          disabled={index > stepNumber ? true : false}
+          onPress={() => dispatch(setStep(index))}
         />
       );
     }

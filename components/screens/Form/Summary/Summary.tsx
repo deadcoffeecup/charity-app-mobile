@@ -8,6 +8,7 @@ import { prevStep } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { useAuth } from '../../../../context/AuthContext';
 import { db } from '../../../../firebaseConfig';
+import { StyledButton } from '../../../custom/NavButton';
 
 export const Summary = () => {
   const dispatch = useDispatch();
@@ -48,13 +49,13 @@ export const Summary = () => {
         <Text key={el}>{el}</Text>
       ))}
       <Flex m={10} justify='center' direction='row'>
-        <Button
+        <StyledButton
           title='Cofnij'
           onPress={() => {
             dispatch(prevStep());
           }}
         />
-        <Button onPress={addPackageOrderToDb} title='Potwierdzam' />
+        <StyledButton onPress={addPackageOrderToDb} title='Potwierdzam' />
       </Flex>
     </View>
   );

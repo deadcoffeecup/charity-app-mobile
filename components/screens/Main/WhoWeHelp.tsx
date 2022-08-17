@@ -4,8 +4,9 @@ import { Flex, Box } from 'react-native-flex-layout';
 import { StyleSheet } from 'react-native';
 
 import React, { FC } from 'react';
+import { NavButton } from '../../custom/NavButton';
 
-export const WhoWeHelp: FC<any> = ({ navigation }) => {
+export const WhoWeHelp: FC = () => {
   return (
     <Flex m={10} center>
       <Box m={20}>
@@ -48,10 +49,7 @@ export const WhoWeHelp: FC<any> = ({ navigation }) => {
       <Text variant='h5'>
         Chcesz oddać swoje rzeczy lub zorganizować zbiórkę lokalną?
       </Text>
-      <Button
-        onPress={() => navigation.navigate('Signup')}
-        title='Załóż konto'
-      />
+      <NavButton screen='Signup' title='Załóż konto' />
     </Flex>
   );
 };

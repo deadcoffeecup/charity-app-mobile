@@ -1,5 +1,5 @@
 import { Button, Flex, Text, TextInput } from '@react-native-material/core';
-import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { View } from 'react-native';
 import {
   Formik,
@@ -11,9 +11,10 @@ import {
   prepareDataForValidation,
   useFormik,
 } from 'formik';
-import { NavPropsType } from '../../../App';
 
+import { NavPropsType } from '../../../App';
 import { useAuth } from '../../../context/AuthContext';
+import { NavButton, StyledButton } from '../../custom/NavButton';
 interface SignupFormValues {
   email: string;
   password: string;
@@ -66,18 +67,15 @@ export const Signup: FC<NavPropsType> = ({ navigation }) => {
                 onBlur={handleBlur('confirmPassword')}
                 value={values.confirmPassword}
               />
-              <Button onPress={() => handleSubmit()} title='signup' />
+              <StyledButton onPress={() => handleSubmit()} title='signup' />
             </View>
           )}
         </Formik>
       </View>
       <View>
         <Text>Masz już konto?</Text>
-        <Button
-          onPress={() => navigation.navigate('Login')}
-          title='Zaloguj się'
-        />
-        <Button onPress={() => navigation.navigate('Main')} title='Powrót' />
+        <NavButton screen='Login' title='Zaloguj się' />
+        <NavButton screen='Main' title='Powrót' />
       </View>
     </Flex>
   );
