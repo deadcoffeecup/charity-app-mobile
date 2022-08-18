@@ -44,6 +44,7 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
             <View style={{ width: '80%' }}>
               <Text>E-mail</Text>
               <Field
+                color={'cadetblue'}
                 name='email'
                 id='email'
                 as={TextInput}
@@ -53,6 +54,7 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
               />
               <Text>Hasło</Text>
               <Field
+                color={'cadetblue'}
                 name='password'
                 id='password'
                 as={TextInput}
@@ -62,15 +64,18 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
                 secureTextEntry
               />
 
-              <StyledButton onPress={() => handleSubmit()} title='Login' />
+              <StyledButton
+                onPress={() => handleSubmit()}
+                title='Zaloguj się'
+              />
             </View>
           )}
         </Formik>
       </Flex>
-      <View>
+      <Flex m={10} direction='column' items='center' justify='center'>
         <Text> Nie masz jeszcze konta?</Text>
         <NavButton title='Zarejestruj się!' screen='Signup' />
-      </View>
+      </Flex>
     </View>
   );
 };

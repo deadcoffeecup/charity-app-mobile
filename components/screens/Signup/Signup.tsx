@@ -71,6 +71,7 @@ export const Signup: FC<NavPropsType> = ({ navigation }) => {
             <View style={{ width: '80%' }}>
               <Text>E-mail</Text>
               <Field
+                color={'cadetblue'}
                 as={TextInput}
                 name={'email'}
                 validate={validateEmail}
@@ -82,6 +83,7 @@ export const Signup: FC<NavPropsType> = ({ navigation }) => {
               )}
               <Text>Hasło</Text>
               <Field
+                color={'cadetblue'}
                 as={TextInput}
                 name={'password'}
                 onChangeText={handleChange('password')}
@@ -93,6 +95,7 @@ export const Signup: FC<NavPropsType> = ({ navigation }) => {
               />
               <Text>Powtórz hasło</Text>
               <Field
+                color={'cadetblue'}
                 as={TextInput}
                 name={'confirmPassword'}
                 validate={() =>

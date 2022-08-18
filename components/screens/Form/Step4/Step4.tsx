@@ -1,5 +1,5 @@
 import { Button, Flex, Text, TextInput } from '@react-native-material/core';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import React, { FC } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -58,38 +58,52 @@ export const Step4: FC = () => {
         {({ handleChange, handleSubmit, values }) => (
           <View>
             <Text>Ulica</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.street}
               onChangeText={handleChange('street')}
             />
             <Text>Miasto</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.city}
               onChangeText={handleChange('city')}
             />
             <Text>Kod pocztowy</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.zipCode}
               onChangeText={handleChange('zipCode')}
             />
             <Text>Telefon</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.telephoneNumber?.toString()}
               keyboardType='phone-pad'
               onChangeText={handleChange('telephoneNumber')}
             />
             <Text>Data</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.date?.toString()}
               onChangeText={handleChange('date')}
             />
             <Text>Godzina</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.time?.toString()}
               onChangeText={handleChange('time')}
             />
             <Text>Notatka dla kuriera</Text>
-            <TextInput
+            <Field
+              color={'cadetblue'}
+              as={TextInput}
               value={values.notesForCourier}
               onChangeText={handleChange('notesForCourier')}
             />

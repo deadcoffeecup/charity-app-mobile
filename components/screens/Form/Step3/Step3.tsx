@@ -97,7 +97,19 @@ export const Step3 = () => {
             ))}
 
             <Text>Wpisz nazwę konkretnej organizacji (opcjonalnie)</Text>
+
+            {/* <Field
+              color={'cadetblue'}
+              name='password'
+              id='password'
+              as={TextInput}
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              value={values.password}
+              secureTextEntry
+            /> */}
             <Field
+              color={'cadetblue'}
               onChangeText={handleChange('targetOrganisation')}
               value={values.targetOrganisation}
               onBlur={handleSubmit}

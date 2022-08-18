@@ -13,6 +13,8 @@ export const StyledButton = styled(Button)`
   background-color: cadetblue;
   color: #fff;
   margin: 5px;
+  width: 80%;
+  align-self: center;
 `;
 
 export const NavButton: FC<PropsType> = ({ title, screen }) => {
