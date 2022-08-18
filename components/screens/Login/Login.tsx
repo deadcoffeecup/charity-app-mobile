@@ -26,8 +26,8 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
   const { login } = useAuth();
 
   return (
-    <Flex style={{ top: 50 }}>
-      <View>
+    <View style={{ top: 50 }}>
+      <Flex items='center'>
         <Text>Logowanie</Text>
         <Formik
           initialValues={initialValues}
@@ -40,29 +40,37 @@ export const Login: FC<NavPropsType> = ({ navigation }) => {
             }
           }}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View>
+          {({ handleChange, handleSubmit, handleBlur, values }) => (
+            <View style={{ width: '80%' }}>
               <Text>E-mail</Text>
-              <TextInput
+              <Field
+                name='email'
+                id='email'
+                as={TextInput}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
               />
               <Text>Hasło</Text>
-              <TextInput
+              <Field
+                name='password'
+                id='password'
+                as={TextInput}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
                 value={values.password}
+                secureTextEntry
               />
+
               <StyledButton onPress={() => handleSubmit()} title='Login' />
             </View>
           )}
         </Formik>
-      </View>
+      </Flex>
       <View>
         <Text> Nie masz jeszcze konta?</Text>
         <NavButton title='Zarejestruj się!' screen='Signup' />
       </View>
-    </Flex>
+    </View>
   );
 };

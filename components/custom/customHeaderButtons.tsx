@@ -19,7 +19,7 @@ const CustomHeaderButton = (props: any) => {
   );
 };
 
-export const MenuButton: FC<any> = ({ navigator }) => {
+export const MenuButton: FC = () => {
   const { logout } = useAuth();
   return (
     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>

@@ -12,6 +12,7 @@ interface PropsType {
 export const StyledButton = styled(Button)`
   background-color: cadetblue;
   color: #fff;
+  margin: 5px;
 `;
 
 export const NavButton: FC<PropsType> = ({ title, screen }) => {
