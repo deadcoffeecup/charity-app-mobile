@@ -1,11 +1,19 @@
-import { Button, Flex, Text } from '@react-native-material/core';
+import {
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Text,
+} from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
+import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { nextStep, prevStep, setNumberOfBags } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { StyledButton } from '../../../custom/NavButton';
+import { PickerIcon } from '../../../custom/PickerIcon';
 import { bagsPickerArr } from './consts';
 
 export const Step2 = () => {
@@ -22,9 +30,7 @@ export const Step2 = () => {
     if (values === 0) {
       setError('Wybierz ilość worków zanim przejdziesz dalej');
     } else {
-      if (mode === 'back') {
-        dispatch(prevStep());
-      } else {
+      if (mode === 'next') {
         dispatch(nextStep());
       }
       setError('');
@@ -32,8 +38,14 @@ export const Step2 = () => {
   };
 
   return (
-    <Flex>
+    <Flex m={40}>
       <RNPickerSelect
+        Icon={PickerIcon}
+        style={{
+          inputIOS: { fontSize: 20 },
+          inputAndroid: { fontSize: 20 },
+          placeholder: { color: '#3339' },
+        }}
         placeholder={
           values === 0
             ? { label: 'Wybierz ilość worków', value: 0 }
@@ -47,7 +59,7 @@ export const Step2 = () => {
         <StyledButton
           title='Cofnij'
           onPress={() => {
-            validate('back');
+            dispatch(prevStep());
           }}
         />
         <StyledButton

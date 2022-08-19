@@ -7,6 +7,7 @@ import { nextStep, setStuff } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { stuffArr } from './consts';
 import { StyledButton } from '../../../custom/NavButton';
+import { Field } from 'formik';
 
 export const Step1: FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export const Step1: FC = () => {
       setValues((prev) => [...prev, item]);
     }
   };
-  const handleIsChecked = (item: string) => {
+  const handleInitialValue = (item: string) => {
     return values.includes(item);
   };
   const validate = () => {
@@ -46,7 +47,7 @@ export const Step1: FC = () => {
       {stuffArr.map((item) => (
         <BouncyCheckbox
           key={item}
-          isChecked={handleIsChecked(item) as boolean | undefined}
+          isChecked={handleInitialValue(item) as boolean | undefined}
           textStyle={{
             textDecorationLine: 'none',
           }}

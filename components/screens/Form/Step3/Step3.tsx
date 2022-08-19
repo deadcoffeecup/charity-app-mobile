@@ -1,4 +1,4 @@
-import { Button, Flex, Text, TextInput } from '@react-native-material/core';
+import { Box, Flex, Icon, Text, TextInput } from '@react-native-material/core';
 import { Field, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +15,7 @@ import {
 import { RootState } from '../../../../app/store';
 import { targetGroupArr, voivodshipArr } from './consts';
 import { StyledButton } from '../../../custom/NavButton';
+import { PickerIcon } from '../../../custom/PickerIcon';
 
 export const Step3 = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ export const Step3 = () => {
       }
     } else {
       if (error.length === 0) {
-        mode === 'next' ? dispatch(nextStep()) : dispatch(prevStep());
+        mode === 'next' && dispatch(nextStep());
       }
     }
   };
@@ -68,8 +69,14 @@ export const Step3 = () => {
         }}
       >
         {({ handleChange, handleSubmit, values }) => (
-          <>
+          <Box mh={10} mv={10}>
             <RNPickerSelect
+              Icon={PickerIcon}
+              style={{
+                inputIOS: { fontSize: 20 },
+                inputAndroid: { fontSize: 20 },
+                placeholder: { color: '#3339' },
+              }}
               placeholder={
                 selectValue.length === 0
                   ? { label: 'Wybierz wojewódźtwo', value: '' }
@@ -81,21 +88,24 @@ export const Step3 = () => {
               onValueChange={(value) => setSelectValue(value)}
               items={voivodshipArr}
             />
-            <Text>Komu chcesz pomóc?</Text>
-            {targetGroupArr.map((targetGroup) => (
-              <BouncyCheckbox
-                key={targetGroup}
-                isChecked={handleIsChecked(targetGroup) as boolean | undefined}
-                textStyle={{
-                  textDecorationLine: 'none',
-                }}
-                text={targetGroup}
-                onPress={() => {
-                  handleCheck(targetGroup);
-                }}
-              />
-            ))}
-
+            <Box mv={20}>
+              <Text>Komu chcesz pomóc?</Text>
+              {targetGroupArr.map((targetGroup) => (
+                <BouncyCheckbox
+                  key={targetGroup}
+                  isChecked={
+                    handleIsChecked(targetGroup) as boolean | undefined
+                  }
+                  textStyle={{
+                    textDecorationLine: 'none',
+                  }}
+                  text={targetGroup}
+                  onPress={() => {
+                    handleCheck(targetGroup);
+                  }}
+                />
+              ))}
+            </Box>
             <Text>Wpisz nazwę konkretnej organizacji (opcjonalnie)</Text>
 
             {/* <Field
@@ -116,11 +126,11 @@ export const Step3 = () => {
               as={TextInput}
             />
             {!!error.length && <Text style={{ color: 'red' }}>{error}</Text>}
-            <Flex m={10} justify='center' direction='row'>
+            <Flex w={'80%'} m={30} justify='center' direction='row'>
               <StyledButton
                 title='Cofnij'
                 onPress={() => {
-                  validate('back');
+                  dispatch(prevStep());
                 }}
               />
               <StyledButton
@@ -130,7 +140,7 @@ export const Step3 = () => {
                 }}
               />
             </Flex>
-          </>
+          </Box>
         )}
       </Formik>
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Flex, Text } from '@react-native-material/core';
+import { IconComponentProvider, Icon } from '@react-native-material/core';
 
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
@@ -11,6 +12,7 @@ import { RootState } from '../../../app/store';
 import Main from '../Main';
 import { Footer } from '../Main/Footer';
 import { setStep } from '../../../app/form';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function () {
   const { stepNumber } = useSelector((state: RootState) => state.formValues);
@@ -58,7 +60,7 @@ export default function () {
     }
   };
   return (
-    <>
+    <ScrollView>
       <Text>
         Oddaj rzeczy, których już nie chcesz POTRZEBUJĄCYM Wystarczą 4 proste
         kroki
@@ -66,6 +68,6 @@ export default function () {
       {pagination()}
       {renderStep(stepNumber)}
       <Footer />
-    </>
+    </ScrollView>
   );
 }
