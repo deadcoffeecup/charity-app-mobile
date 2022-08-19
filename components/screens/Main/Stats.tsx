@@ -20,9 +20,9 @@ export const Stats: FC = () => {
   }, []);
 
   return (
-    <Flex direction='row'>
-      <NavButton title='Oddaj rzeczy' screen='Form' />
+    <Flex center direction='column'>
       <Text>Stats:{numberOfPackages}</Text>
+      <NavButton title='Oddaj rzeczy' screen='Form' />
     </Flex>
   );
 };

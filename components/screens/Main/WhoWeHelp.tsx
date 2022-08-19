@@ -1,12 +1,14 @@
-import { Button, Text } from '@react-native-material/core';
-
-import { Flex, Box } from 'react-native-flex-layout';
+import { Button, Text, Box } from '@react-native-material/core';
+import React, { FC } from 'react';
+import { Flex } from 'react-native-flex-layout';
 import { StyleSheet } from 'react-native';
 
-import React, { FC } from 'react';
 import { NavButton } from '../../custom/NavButton';
+import { CircleBox } from '../../custom/CircleBox';
+import { useAuth } from '../../../context/AuthContext';
 
 export const WhoWeHelp: FC = () => {
+  const { currentUser } = useAuth();
   return (
     <Flex m={10} center>
       <Box m={20}>
@@ -14,9 +16,7 @@ export const WhoWeHelp: FC = () => {
       </Box>
       <Flex items={'start'} inline>
         <Flex center w={'33%'}>
-          <Box style={styles.circle}>
-            <Text style={styles.circleText}>Funtacjom</Text>
-          </Box>
+          <CircleBox>Funtacjom</CircleBox>
           <Text variant='caption'>
             W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi
             współpracujemy. Możesz sprawdzić czym się zajmują, komu pomagają i
@@ -25,9 +25,7 @@ export const WhoWeHelp: FC = () => {
         </Flex>
 
         <Flex center w={'33%'}>
-          <Box style={styles.circle}>
-            <Text style={styles.circleText}>Organizacjom pozarządowym</Text>
-          </Box>
+          <CircleBox>Organizacjom pozarządowym</CircleBox>
           <Text variant='caption'>
             Pomagamy również wszelkim organizacjom pozarządowym i charytatywnym,
             które nie są Fundacjami. Są to nasi Partnerzy, który zrobią dobry
@@ -35,9 +33,7 @@ export const WhoWeHelp: FC = () => {
           </Text>
         </Flex>
         <Flex center w={'33%'}>
-          <Box style={styles.circle}>
-            <Text style={styles.circleText}>Lokalnym zbiórkom</Text>
-          </Box>
+          <CircleBox>Lokalnym zbiórkom</CircleBox>
           <Text variant='caption'>
             Wspieramy lokalne zbiórki organizowane przez indywidualne osoby,
             którym zależy na dobru społeczności, w której żyją. Sam też możesz
@@ -45,28 +41,14 @@ export const WhoWeHelp: FC = () => {
           </Text>
         </Flex>
       </Flex>
-
-      <Text variant='h5'>
-        Chcesz oddać swoje rzeczy lub zorganizować zbiórkę lokalną?
-      </Text>
-      <NavButton screen='Signup' title='Załóż konto' />
+      {!currentUser && (
+        <>
+          <Text variant='h5'>
+            Chcesz oddać swoje rzeczy lub zorganizować zbiórkę lokalną?
+          </Text>
+          <NavButton screen='Signup' title='Załóż konto' />
+        </>
+      )}
     </Flex>
   );
 };
-
-const styles = StyleSheet.create({
-  circle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    backgroundColor: 'cadetblue',
-  },
-  circleText: {
-    textAlign: 'center',
-    fontWeight: '600',
-    fontSize: 12,
-    color: '#fff',
-  },
-});
