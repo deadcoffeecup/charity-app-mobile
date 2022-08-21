@@ -1,114 +1,84 @@
 import React from 'react';
-
-import { NavigationContainer } from '@react-navigation/native';
 import {
   createNativeStackNavigator,
-  NativeStackScreenProps,
+  NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { Login } from '../components/screens/Login';
 import { Signup } from '../components/screens/Signup';
 import Main from '../components/screens/Main';
 import Form from '../components/screens/Form';
-import { MenuButton } from '../components/custom/customHeaderButtons';
-import { Text } from '@react-native-material/core';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { MenuButton } from '../components/custom/Buttons/MenuButton';
+import { MainViewIcon, ShirtIcon, UserIcon } from '../components/custom/Icons';
 
-const slideLeftOptions = {
+const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+const screenOptions = {
+  title: '',
+  headerLeft: () => <ShirtIcon />,
+  headerRight: () => <MenuButton />,
+};
+const slideFromRight: NativeStackNavigationOptions | undefined = {
   animation: 'slide_from_right',
   headerBackVisible: true,
 };
-const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
-
-export const Navigation = () => {
+const StackFormNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName='Main'>
-      <Stack.Screen
-        options={{
-          title: '',
-          headerRight: () => <MenuButton />,
-          headerLeft: () => <Text>Main Logo</Text>,
-        }}
-        name='Login'
-        component={Login}
-      />
-      <Stack.Screen
-        options={{
-          title: '',
-          headerRight: () => <MenuButton />,
-          headerLeft: () => <Text>Logo</Text>,
-        }}
-        name='Signup'
-        component={Signup}
-      />
-      <Stack.Screen
-        options={{
-          title: '',
-          headerRight: () => <MenuButton />,
-          headerLeft: () => <Text>Logo</Text>,
-        }}
-        name='Main'
-        component={Main}
-      />
-      <Stack.Screen
-        options={{
-          title: '',
-          headerRight: () => <MenuButton />,
-          headerLeft: () => <Text>Logo</Text>,
-        }}
-        name='Form'
-        component={Form}
-      />
+    <Stack.Navigator screenOptions={slideFromRight} initialRouteName='Form'>
+      <Stack.Group screenOptions={slideFromRight}>
+        <Stack.Screen options={screenOptions} name='Form' component={Form} />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+};
+const StackMainNavigation = () => {
+  return (
+    <Stack.Navigator screenOptions={slideFromRight} initialRouteName='Main'>
+      <Stack.Group screenOptions={slideFromRight}>
+        <Stack.Screen options={screenOptions} name='Login' component={Login} />
+        <Stack.Screen
+          options={screenOptions}
+          name='Signup'
+          component={Signup}
+        />
+      </Stack.Group>
+
+      <Stack.Group screenOptions={slideFromRight}>
+        <Stack.Screen options={screenOptions} name='Main' component={Main} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 };
 export const DrawerNav = () => {
   return (
     <Drawer.Navigator
-      screenOptions={
-        {
-          // drawerActiveTintColor: Colors.primary,
-        }
-      }
+      screenOptions={{
+        drawerActiveTintColor: 'cadetblue',
+        drawerPosition: 'right',
+      }}
     >
       <Drawer.Group
-        screenOptions={
-          {
-            //   drawerIcon: () => (
-            //     <Fontisto
-            //       name={'shopping-store'}
-            //       size={24}
-            //       color={Colors.primaryDark}
-            //     />
-            //   ),
-          }
-        }
+        screenOptions={{
+          drawerIcon: () => <MainViewIcon />,
+        }}
       >
         <Drawer.Screen
-          name={'Shop'}
-          component={Navigation}
+          name={'Głowna'}
+          component={StackMainNavigation}
           options={{ headerShown: false }}
         />
       </Drawer.Group>
       <Drawer.Group
-        screenOptions={
-          {
-            //   drawerIcon: () => (
-            //     <Ionicons
-            //       name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
-            //       size={24}
-            //       color={Colors.primaryDark}
-            //     />
-            //   ),
-          }
-        }
+        screenOptions={{
+          drawerIcon: () => <UserIcon />,
+        }}
       >
-        {/* <Drawer.Screen
-          name={'Order'}
-          component={StackOrderNavigator}
+        <Drawer.Screen
+          name={'Oddaj rzeczy'}
+          component={StackFormNavigation}
           options={{ headerShown: false }}
-        /> */}
+        />
       </Drawer.Group>
     </Drawer.Navigator>
   );

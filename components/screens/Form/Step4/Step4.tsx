@@ -13,7 +13,7 @@ import {
 } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { FormError } from '../../../custom/FormError';
-import { StyledButton } from '../../../custom/NavButton';
+import { StyledButton } from '../../../custom/Buttons/NavButton';
 
 export const Step4: FC = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Text, TextInput } from '@react-native-material/core';
+import { Box, Flex, Text, TextInput } from '@react-native-material/core';
 import { Field, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,8 +14,8 @@ import {
 } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { targetGroupArr, voivodshipArr } from './consts';
-import { StyledButton } from '../../../custom/NavButton';
-import { PickerIcon } from '../../../custom/PickerIcon';
+import { StyledButton } from '../../../custom/Buttons/NavButton';
+import { PickerIcon } from '../../../custom/Icons';
 
 export const Step3 = () => {
   const dispatch = useDispatch();
@@ -107,17 +107,6 @@ export const Step3 = () => {
               ))}
             </Box>
             <Text>Wpisz nazwę konkretnej organizacji (opcjonalnie)</Text>
-
-            {/* <Field
-              color={'cadetblue'}
-              name='password'
-              id='password'
-              as={TextInput}
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              secureTextEntry
-            /> */}
             <Field
               color={'cadetblue'}
               onChangeText={handleChange('targetOrganisation')}

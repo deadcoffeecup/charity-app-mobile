@@ -14,7 +14,7 @@ import {
 
 import { useAuth } from '../../../context/AuthContext';
 import { NavPropsType } from '../../../App';
-import { NavButton, StyledButton } from '../../custom/NavButton';
+import { NavButton, StyledButton } from '../../custom/Buttons/NavButton';
 
 interface LoginFormValues {
   email: string;

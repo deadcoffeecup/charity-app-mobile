@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from '@react-native-material/core';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useAuth } from '../../../context/AuthContext';
-import { NavButton } from '../../custom/NavButton';
+import { NavButton } from '../../custom/Buttons/NavButton';
 
 const NavLink = styled(Button)`
   color: cadetblue;

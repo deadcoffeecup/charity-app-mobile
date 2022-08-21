@@ -6,7 +6,7 @@ import {
   Item,
 } from 'react-navigation-header-buttons';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuth } from '../../context/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomHeaderButton = (props: any) => {
   return (
@@ -20,15 +20,14 @@ const CustomHeaderButton = (props: any) => {
 };
 
 export const MenuButton: FC = () => {
-  const { logout } = useAuth();
+  const navigation = useNavigation<any>();
   return (
     <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
       <Item
         title={'menu'}
         iconName={'menu'}
         onPress={() => {
-          logout();
-          alert('logged out');
+          navigation.toggleDrawer();
         }}
       />
     </HeaderButtons>

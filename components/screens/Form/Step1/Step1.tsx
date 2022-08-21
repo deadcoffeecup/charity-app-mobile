@@ -6,8 +6,9 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { nextStep, setStuff } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { stuffArr } from './consts';
-import { StyledButton } from '../../../custom/NavButton';
+import { StyledButton } from '../../../custom/Buttons/NavButton';
 import { Field } from 'formik';
+import { FormError } from '../../../custom/FormError';
 
 export const Step1: FC = () => {
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ export const Step1: FC = () => {
           }}
         />
       ))}
-      {!!error.length && <Text style={{ color: 'red' }}>{error}</Text>}
+      {!!error.length && <FormError error={error} />}
       <Flex m={10} justify='center' direction='row'>
         <StyledButton
           title='Dalej'

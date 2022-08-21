@@ -14,7 +14,7 @@ import {
 
 import { NavPropsType } from '../../../App';
 import { useAuth } from '../../../context/AuthContext';
-import { NavButton, StyledButton } from '../../custom/NavButton';
+import { NavButton, StyledButton } from '../../custom/Buttons/NavButton';
 import { FormError } from '../../custom/FormError';
 interface SignupFormValues {
   email: string;

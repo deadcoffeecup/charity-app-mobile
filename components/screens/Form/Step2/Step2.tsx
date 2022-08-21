@@ -1,19 +1,12 @@
-import {
-  Button,
-  Flex,
-  Icon,
-  IconButton,
-  Text,
-} from '@react-native-material/core';
+import { Flex, Text } from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
-import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { nextStep, prevStep, setNumberOfBags } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
-import { StyledButton } from '../../../custom/NavButton';
-import { PickerIcon } from '../../../custom/PickerIcon';
+import { StyledButton } from '../../../custom/Buttons/NavButton';
+import { PickerIcon } from '../../../custom/Icons';
 import { bagsPickerArr } from './consts';
 
 export const Step2 = () => {

@@ -1,6 +1,6 @@
 import { Button, Stack, Text } from '@react-native-material/core';
 import React, { FC } from 'react';
-import { NavButton } from '../../custom/NavButton';
+import { NavButton } from '../../custom/Buttons/NavButton';
 
 export const WelcomeBanner: FC = () => {
   return (

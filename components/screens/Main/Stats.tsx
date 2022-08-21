@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 
 import { db } from '../../../firebaseConfig';
-import { NavButton } from '../../custom/NavButton';
+import { NavButton } from '../../custom/Buttons/NavButton';
 
 export const Stats: FC = () => {
   const [numberOfPackages, setNumberOfPackages] = useState(0);

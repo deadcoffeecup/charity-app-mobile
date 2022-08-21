@@ -8,7 +8,7 @@ import { prevStep } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { useAuth } from '../../../../context/AuthContext';
 import { db } from '../../../../firebaseConfig';
-import { StyledButton } from '../../../custom/NavButton';
+import { StyledButton } from '../../../custom/Buttons/NavButton';
 
 export const Summary = () => {
   const dispatch = useDispatch();

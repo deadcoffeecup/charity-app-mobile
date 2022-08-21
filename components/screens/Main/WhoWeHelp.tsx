@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Flex } from 'react-native-flex-layout';
 import { StyleSheet } from 'react-native';
 
-import { NavButton } from '../../custom/NavButton';
+import { NavButton } from '../../custom/Buttons/NavButton';
 import { CircleBox } from '../../custom/CircleBox';
 import { useAuth } from '../../../context/AuthContext';
 
