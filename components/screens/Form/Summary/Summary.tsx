@@ -50,6 +50,11 @@ export const Summary = () => {
       ))}
       <Text>ilość worków</Text>
       {orderData.numberOfBags}
+      <Text>{orderData.adress.street}</Text>
+      <Text>{orderData.adress.zipCode}</Text>
+      <Text>{orderData.adress.city}</Text>
+      <Text>Telephone:{orderData.adress.telephoneNumber?.toString()}</Text>
+
       <Flex m={10} justify='center' direction='row'>
         <StyledButton
           title='Cofnij'
