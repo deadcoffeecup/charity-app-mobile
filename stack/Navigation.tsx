@@ -32,7 +32,7 @@ const StackFormNavigation = () => {
     </Stack.Navigator>
   );
 };
-const StackMainNavigation = () => {
+const StackUserNavigation = () => {
   return (
     <Stack.Navigator screenOptions={slideFromRight} initialRouteName='Main'>
       <Stack.Group screenOptions={slideFromRight}>
@@ -43,7 +43,12 @@ const StackMainNavigation = () => {
           component={Signup}
         />
       </Stack.Group>
-
+    </Stack.Navigator>
+  );
+};
+const StackMainNavigation = () => {
+  return (
+    <Stack.Navigator screenOptions={slideFromRight} initialRouteName='Main'>
       <Stack.Group screenOptions={slideFromRight}>
         <Stack.Screen options={screenOptions} name='Main' component={Main} />
       </Stack.Group>
@@ -72,6 +77,17 @@ export const DrawerNav = () => {
       <Drawer.Group
         screenOptions={{
           drawerIcon: () => <UserIcon />,
+        }}
+      >
+        <Drawer.Screen
+          name={'Użytkownik'}
+          component={StackUserNavigation}
+          options={{ headerShown: false }}
+        />
+      </Drawer.Group>
+      <Drawer.Group
+        screenOptions={{
+          drawerIcon: () => <ShirtIcon />,
         }}
       >
         <Drawer.Screen
