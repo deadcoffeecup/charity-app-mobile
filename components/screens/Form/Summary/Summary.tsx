@@ -48,6 +48,8 @@ export const Summary = () => {
       {orderData.stuff.map((el) => (
         <Text key={el}>{el}</Text>
       ))}
+      <Text>ilość worków</Text>
+      {orderData.numberOfBags}
       <Flex m={10} justify='center' direction='row'>
         <StyledButton
           title='Cofnij'
