@@ -2,6 +2,7 @@ import React from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
+  NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -12,17 +13,14 @@ import Form from '../components/screens/Form';
 import { MenuButton } from '../components/custom/Buttons/MenuButton';
 import { MainViewIcon, ShirtIcon, UserIcon } from '../components/custom/Icons';
 
+import { navigate } from '../modules/RootNavigation';
+
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
+
 const screenOptions = {
   title: '',
-  headerLeft: () => (
-    <ShirtIcon
-      onPress={() => {
-        alert('test3');
-      }}
-    />
-  ),
+  headerLeft: () => <ShirtIcon onPress={() => navigate('Main' as never)} />,
   headerRight: () => <MenuButton />,
 };
 const slideFromRight: NativeStackNavigationOptions | undefined = {

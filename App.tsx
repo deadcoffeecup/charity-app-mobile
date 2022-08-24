@@ -8,6 +8,7 @@ import { DrawerNav } from './stack/Navigation';
 import { AuthProvider } from './provider/AuthProvider';
 import { store } from './app/store';
 import { StatusBar } from 'expo-status-bar';
+import { navigationRef } from './modules/RootNavigation';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -26,7 +27,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <AuthProvider>
         <Provider store={store}>
           <StatusBar />
