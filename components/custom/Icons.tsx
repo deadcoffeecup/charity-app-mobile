@@ -33,10 +33,14 @@ export const UserIcon = () => {
     </CustomIcon>
   );
 };
-export const ShirtIcon = () => {
+
+interface Props {
+  onPress?(): void;
+}
+export const ShirtIcon: FC<Props> = (props) => {
   return (
     <CustomIcon>
-      <Icon name='shirt-outline' size={24} />
+      <Icon {...props} name='shirt-outline' size={24} />
     </CustomIcon>
   );
 };

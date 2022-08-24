@@ -16,7 +16,13 @@ const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const screenOptions = {
   title: '',
-  headerLeft: () => <ShirtIcon />,
+  headerLeft: () => (
+    <ShirtIcon
+      onPress={() => {
+        alert('click');
+      }}
+    />
+  ),
   headerRight: () => <MenuButton />,
 };
 const slideFromRight: NativeStackNavigationOptions | undefined = {
