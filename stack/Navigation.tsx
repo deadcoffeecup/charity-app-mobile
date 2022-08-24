@@ -19,7 +19,7 @@ const screenOptions = {
   headerLeft: () => (
     <ShirtIcon
       onPress={() => {
-        alert('test ');
+        alert('test2');
       }}
     />
   ),
