@@ -14,6 +14,11 @@ import { MenuButton } from '../components/custom/Buttons/MenuButton';
 import { MainViewIcon, ShirtIcon, UserIcon } from '../components/custom/Icons';
 
 import { navigate } from '../modules/RootNavigation';
+import Step1 from '../components/screens/Form/Step1';
+import Step2 from '../components/screens/Form/Step2';
+import Step3 from '../components/screens/Form/Step3';
+import Step4 from '../components/screens/Form/Step4';
+import { Summary } from '../components/screens/Form/Summary';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -31,7 +36,15 @@ const StackFormNavigation = () => {
   return (
     <Stack.Navigator screenOptions={slideFromRight} initialRouteName='Form'>
       <Stack.Group screenOptions={slideFromRight}>
-        <Stack.Screen options={screenOptions} name='Form' component={Form} />
+        <Stack.Screen options={screenOptions} name='Step1' component={Step1} />
+        <Stack.Screen options={screenOptions} name='Step2' component={Step2} />
+        <Stack.Screen options={screenOptions} name='Step3' component={Step3} />
+        <Stack.Screen options={screenOptions} name='Step4' component={Step4} />
+        <Stack.Screen
+          options={screenOptions}
+          name='Summary'
+          component={Summary}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
