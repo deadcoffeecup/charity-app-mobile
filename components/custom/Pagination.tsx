@@ -1,7 +1,12 @@
 import React from 'react';
-import { Flex } from '@react-native-material/core';
+import { Button, Flex } from '@react-native-material/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import { setStep } from '../../app/form';
 
-const Pagination = () => {
+export const Pagination = () => {
+  const { stepNumber } = useSelector((state: RootState) => state.formValues);
+  const dispatch = useDispatch();
   const paginationArr = [] as JSX.Element[];
   for (let index: number = 1; index < 6; index++) {
     paginationArr.push(
