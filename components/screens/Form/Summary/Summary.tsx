@@ -4,7 +4,10 @@ import React from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { prevStep } from '../../../../app/form';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { useNavigation } from '@react-navigation/native';
+
 import { RootState } from '../../../../app/store';
 import { useAuth } from '../../../../context/AuthContext';
 import { db } from '../../../../firebaseConfig';
@@ -40,6 +43,8 @@ export const Summary = () => {
     voivodship,
     userEmail: currentUser?.email,
   };
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <View>
@@ -59,7 +64,7 @@ export const Summary = () => {
         <StyledButton
           title='Cofnij'
           onPress={() => {
-            dispatch(prevStep());
+            navigation.navigate('Step4' as keyof RootStackParamList);
           }}
         />
         <StyledButton onPress={addPackageOrderToDb} title='Potwierdzam' />

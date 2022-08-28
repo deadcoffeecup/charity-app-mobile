@@ -9,12 +9,17 @@ import { stuffArr } from './consts';
 import { StyledButton } from '../../../custom/Buttons/NavButton';
 import { Field } from 'formik';
 import { FormError } from '../../../custom/FormError';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { useNavigation } from '@react-navigation/native';
 
 export const Step1: FC = () => {
   const dispatch = useDispatch();
   const { stuff } = useSelector((state: RootState) => state.formValues);
   const [values, setValues] = useState(stuff);
   const [error, setError] = useState('');
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const handleCheck = (item: string) => {
     if (values.includes(item)) {
@@ -32,7 +37,7 @@ export const Step1: FC = () => {
       setError('zaznacz przynajmniej jedną kategorię');
     } else {
       setError('');
-      dispatch(nextStep());
+      navigation.navigate('Step2' as keyof RootStackParamList);
     }
   };
   useEffect(() => {

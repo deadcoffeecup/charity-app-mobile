@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { useNavigation } from '@react-navigation/native';
+
 import { nextStep, prevStep, setNumberOfBags } from '../../../../app/form';
 import { RootState } from '../../../../app/store';
 import { StyledButton } from '../../../custom/Buttons/NavButton';
@@ -14,6 +18,8 @@ export const Step2 = () => {
   const { numberOfBags } = useSelector((state: RootState) => state.formValues);
   const [values, setValues] = useState(numberOfBags);
   const [error, setError] = useState('');
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     dispatch(setNumberOfBags({ value: values }));
@@ -24,7 +30,7 @@ export const Step2 = () => {
       setError('Wybierz ilość worków zanim przejdziesz dalej');
     } else {
       if (mode === 'next') {
-        dispatch(nextStep());
+        navigation.navigate('Step3' as keyof RootStackParamList);
       }
       setError('');
     }
@@ -52,7 +58,7 @@ export const Step2 = () => {
         <StyledButton
           title='Cofnij'
           onPress={() => {
-            dispatch(prevStep());
+            navigation.navigate('Step1' as keyof RootStackParamList);
           }}
         />
         <StyledButton
