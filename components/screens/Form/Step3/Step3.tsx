@@ -16,6 +16,9 @@ import { RootState } from '../../../../app/store';
 import { targetGroupArr, voivodshipArr } from './consts';
 import { StyledButton } from '../../../custom/Buttons/NavButton';
 import { PickerIcon } from '../../../custom/Icons';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { useNavigation } from '@react-navigation/native';
 
 export const Step3 = () => {
   const dispatch = useDispatch();
@@ -40,6 +43,8 @@ export const Step3 = () => {
   const [error, setError] = useState<string>('');
   const [selectValue, setSelectValue] = useState(voivodship);
   const [checkboxesValue, setCheckboxesValue] = useState(targetGroup);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     dispatch(setTargetGroup({ value: checkboxesValue }));
@@ -55,7 +60,8 @@ export const Step3 = () => {
       }
     } else {
       if (error.length === 0) {
-        mode === 'next' && dispatch(nextStep());
+        mode === 'next' &&
+          navigation.navigate('Step2' as keyof RootStackParamList);
       }
     }
   };
@@ -119,7 +125,7 @@ export const Step3 = () => {
               <StyledButton
                 title='Cofnij'
                 onPress={() => {
-                  dispatch(prevStep());
+                  navigation.navigate('Step2' as keyof RootStackParamList);
                 }}
               />
               <StyledButton

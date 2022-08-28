@@ -4,6 +4,12 @@ import React, { FC } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { useNavigation } from '@react-navigation/native';
+
+const navigation =
+  useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
 import {
   setAdress,
@@ -147,7 +153,8 @@ export const Step4: FC = () => {
               <StyledButton
                 title='Cofnij'
                 onPress={() => {
-                  dispatch(prevStep());
+                  navigation.navigate('Step3' as keyof RootStackParamList);
+
                   handleSubmit();
                 }}
               />
@@ -155,7 +162,7 @@ export const Step4: FC = () => {
                 title='Dalej'
                 onPress={() => {
                   handleSubmit();
-                  dispatch(nextStep());
+                  navigation.navigate('Summary' as keyof RootStackParamList);
                 }}
               />
             </Flex>
